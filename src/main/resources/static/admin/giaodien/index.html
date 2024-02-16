@@ -1,0 +1,86 @@
+
+<!-- Page Content  -->
+<div id="content-page" class="">
+	<div class="container-fluid" style="min-height: 600px">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<form>
+						<div class="col-sm-12 iq-card" style="padding: 40px;">
+							<img alt="" src="/images/{{nav.linkimage}}"
+								style="max-width: 100%"> <input type="file"
+								class="custom-file-input" accept="image/png, image/jpeg"
+								onchange="angular.element(this).scope().imageChanged(this.files)">
+							<label>Kích Thước : 1528x68</label>
+							<hr>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input"
+									aria-describedby="inputGroupFileAddon01" id="linkimage"
+									ng-model="banner_nav.linkimage"
+									onchange="angular.element(this).scope().bannernav(this.files)"
+									accept="image/png, image/jpeg"> <label
+									class="custom-file-label" for="inputGroupFile01">Chọn
+									hình</label>
+							</div>
+						</div>
+					</form>
+					<div class="col-sm-5 iq-card"
+						style="padding: 40px; margin-right: 5px; margin-left: 7%">
+						<img src="/images/{{qc1.linkimage}}"
+							style="height: 387px; width: 268px" class="" alt=""> <label>Kích
+							Thước : 268x387</label>
+						<hr>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" accept="image/*">
+							<label class="custom-file-label">Chọn file</label>
+						</div>
+					</div>
+					<div class="col-sm-5 iq-card" style="padding: 40px;">
+						<img src="/images/{{qc2.linkimage}}"
+							style="height: 387px; width: 268px" class="" alt=""><label>Kích
+							Thước : 268x387</label>
+						<hr>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" accept="image/*">
+							<label class="custom-file-label">Chọn file</label>
+						</div>
+
+					</div>
+					<div class="col-sm-5 iq-card"
+						style="padding: 40px; margin-right: 5px; margin-left: 7%">
+						<img alt="" style="height: 430px; width: 450px"
+							src="/images/{{bn1.linkimage}}"> <label>Kích Thước
+							: 449x430</label>
+						<hr>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" accept="image/*">
+							<label class="custom-file-label">Chọn file</label>
+						</div>
+						<!-- <hr>
+							<select class="form-control" id="exampleFormControlSelec"
+								ng-model="form.category.id">
+								<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+							</select> -->
+					</div>
+					<div class="col-sm-5 iq-card" style="padding: 40px">
+						<img alt="" style="height: 430px; width: 450px"
+							src="/images/{{bn2.linkimage}}"> <label>Kích Thước
+							: 449x430</label>
+						<hr>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" accept="image/*">
+							<label class="custom-file-label">Chọn file</label>
+						</div>
+						<!-- 	<hr>
+							<select class="form-control" id="exampleFormControlSelect1"
+								ng-model="form.category.id">
+								<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+							</select> -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

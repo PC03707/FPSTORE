@@ -1,0 +1,926 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>FPStore - Truyện tranh hàng đầu</title>
+<!-- Favicon -->
+</head>
+<body>
+	<div class="wrapper">
+		<div id="content-page" class="content-page">
+			<div class="container-fluid">
+				<div class="row">
+					<!-- <div class="col-lg-12" style="padding-bottom: 20px;">
+						<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+							<div class="collapse navbar-collapse" id="navbarNav">
+								<ul class="navbar-nav">
+									<li class="nav-item active"><a class="nav-link" href="#">Home
+											<span class="sr-only">(current)</span>
+									</a></li>
+									<li class="nav-item"><a class="nav-link" href="#">About</a>
+									</li>
+									<li class="nav-item"><a class="nav-link" href="#">Services</a>
+									</li>
+									<li class="nav-item dropdown"><a
+										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+										role="button" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false"> Dropdown </a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="#">Action</a> <a
+												class="dropdown-item" href="#">Another action</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Something else here</a>
+										</div></li>
+								</ul>
+							</div>
+						</nav>
+					</div> -->
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="iq-sidebar iq-card" style="height: 445px">
+									<div id="sidebar-scrollbar">
+										<nav class="iq-sidebar-menu">
+											<ul id="iq-sidebar-toggle" class="iq-menu">
+												<li><a href="#ui-elements"
+													class="iq-waves-effect collapsed" data-toggle="collapse"
+													aria-expanded="false"><i
+														class="lab la-elementor iq-arrow-left"></i><span>Danh
+															mục sản phẩm</span><i
+														class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+													<ul id="ui-elements" class="iq-submenu collapse"
+														data-parent="#iq-sidebar-toggle">
+														<li ng-repeat="c in categories" class="elements"><a
+															ng-click="productcategory(c.id)"
+															class="iq-waves-effect collapsed" data-toggle="collapse"
+															aria-expanded="false"><i class="ri-play-circle-line"></i><span>{{c.name}}</span></a></li>
+													</ul></li>
+											</ul>
+										</nav>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div id="carouselExampleControls" class="carousel slide"
+									data-ride="carousel">
+									<div class="carousel-inner">
+										<div class="carousel-item active">
+											<img src="../../images/banner2_x2.png" class="d-block w-100"
+												alt="...">
+										</div>
+										<div class="carousel-item">
+											<img
+												src="https://bookbuy.vn/Res/Images/Album/efefae23-5cb2-42e9-8d4f-59ca99d500af.png?w=920&h=420&mode=crop"
+												class="d-block w-100" alt="...">
+										</div>
+										<div class="carousel-item">
+											<img
+												src="https://bookbuy.vn/Res/Images/Album/36047b87-aaf7-4d6a-b6da-23c80c327184.png?w=920&h=420&mode=crop"
+												class="d-block w-100" alt="...">
+										</div>
+									</div>
+									<button class="carousel-control-prev" type="button"
+										data-target="#carouselExampleControls" data-slide="prev"
+										style="border: none; background: none">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button"
+										data-target="#carouselExampleControls" data-slide="next"
+										style="border: none; background: none">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-lg-10 iq-card">
+						<div class="iq-header-title text-center"
+							style="margin-top: 10px; margin-bottom: 10px">
+							<h4 class="card-title">Sản phẩm</h4>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 col-md-4 col-lg-3"
+								ng-repeat="p in pager.products">
+								<div
+									class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+									<div class="iq-card-body p-0">
+										<div class="d-flex align-items-center">
+											<div
+												class="col-6 p-0 position-relative image-overlap-shadow">
+												<a href="javascript:void();"> <img
+													src="/images/book/{{p.image}}"
+													class="img-fluid rounded w-100"></a>
+												<div class="view-book">
+													<a href="/product/detail/{{p.id}}"
+														class="btn btn-sm btn-white">Xem Ngay</a> <a
+														ng-click="checkAddOrRemove(p.id)"
+														class="btn btn-sm btn-white">Like</a>
+												</div>
+											</div>
+											<div class="col-6">
+												<div class="mb-2">
+													<h6 class="mb-1">{{p.name}}</h6>
+													<p class="font-size-13 line-height mb-1">{{p.author.name}}</p>
+													<div class="d-block line-height">
+														<span class="font-size-11 text-warning"> <i
+															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+															class="fa fa-star"></i>
+														</span>
+													</div>
+												</div>
+												<div class="price d-flex align-items-center">
+													<h6>
+														<b>{{p.price | number:0}}</b> VND
+													</h6>
+												</div>
+												<div class="iq-product-action">
+													<a href=""><i ng-click="addcart(p)"
+														class="ri-shopping-cart-2-fill text-primary"></i></a> <a
+														ng-repeat="f in favorites" ng-show="f.book.id === p.id"
+														ng-click="checkAddOrRemove(p.id)" href=""
+														style="color: red" class="ri-heart-fill"></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12" style="display: flex; justify-content: center;">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<li class="page-item"><a ng-click="pager.first()"
+											class="page-link">Trang đầu</a></li>
+										<li class="page-item"><a class="page-link"
+											ng-click="pager.prev()">về trước</a></li>
+										<li class="page-item">
+											<button class="page-link">{{pager.page + 1}}/{{pager.count}}</button>
+										</li>
+										<li class="page-item"><a class="page-link"
+											ng-click="pager.next()">tiếp theo</a></li>
+										<li class="page-item"><a class="page-link"
+											ng-click="pager.last()">Trang cuối</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-lg-12 iq-card"
+						style="padding-bottom: 20px; padding-top: 20px">
+						<div class="">
+							<div class="iq-header-title text-center">
+								<h4 class="card-title">Sản Phẩm Sự Kiện</h4>
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="col-lg-3">
+								<div class="card" style="width: 78%; height: auto">
+									<img
+										src="https://img.pikbest.com/origin/06/07/44/62VpIkbEsT7AS.jpg!f305cw"
+										class="" alt="">
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="row">
+									<div class="col-md-2 col-lg-3">
+										<div class="card" style="width: 160px; height: auto">
+											<img
+												src="https://bookbuy.vn/Res/Images/Product/tieng-thet-duoi-bang_125579_1.png?w=170&h=250&mode=crop&quality=90"
+												class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">Tiếng Thét Dưới Băng</h5>
+												<p class="card-text">Sắp ra mắt</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 col-lg-3">
+										<div class="card" style="width: 160px; height: auto">
+											<img
+												src="https://bookbuy.vn/Res/Images/Product/cuon-so-mau_125577_1.png?w=170&h=250&mode=crop&quality=90"
+												class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">Cuốn Sổ Máu</h5>
+												<p class="card-text">Sắp ra mắt</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 col-lg-3">
+										<div class="card" style="width: 160px; height: auto">
+											<img
+												src="https://bookbuy.vn/Res/Images/Product/cuon-gia-pha-bi-that-lac_125576_1.png?w=170&h=250&mode=crop&quality=90"
+												class="card-img-top" alt="...">
+											<div class="card-body">
+													<h5 class="card-title">Cuốn Gia Phả Bị Thất Lạc</h5>
+												<p class="card-text">Sắp ra mắt</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 col-lg-3">
+										<div class="card" style="width: 160px; height: auto">
+											<img
+												src="https://bookbuy.vn/Res/Images/Product/mot-tuan_125578_1.png?w=170&h=250&mode=crop&quality=90"
+												class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">Một Tuần</h5>
+												<p class="card-text">Sắp ra mắt</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="card"
+									style="width: 75%; height: auto; margin-left: 85px">
+									<img
+										src="https://img.pikbest.com/origin/06/09/05/756pIkbEsTfdh.jpg!w700wp"
+										class="" alt="">
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-12 ">
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="iq-card"
+									style="height: 450px; padding: 10px; text-align: center">
+									<div class="iq-header-title text-center">
+										<h4 class="card-title">Thể Loại Anime</h4>
+									</div>
+									<img height="350px" alt=""
+										src="https://img.pikbest.com/origin/06/09/05/756pIkbEsTfdh.jpg!f305cw">
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div class="iq-card " style="height: 450px; padding: 10px;">
+									<div class="iq-card-body">
+										<div class="row" style="height: 440px">
+											<div class="col-lg-1">
+												<button class="carousel-control-prev" type="button"
+													data-target="#Anime" data-slide="prev"
+													style="border: none; background: #DDDDDD; width: 50%; height: 90%; border-radius: 5px"
+													ng-click="prevSlide()">
+													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+													<span class="sr-only">Previous</span>
+												</button>
+											</div>
+											<div class="col-lg-10">
+												<div id="Anime" class="carousel slide" data-ride="carousel">
+													<div class="carousel-inner">
+														<div class="carousel-item active">
+															<div class="row">
+																<div class="col-lg-4 item" ng-repeat="p in productAnime">
+																	<div
+																		class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+																		<div class="iq-card-body p-0">
+																			<div class="d-flex align-items-center">
+																				<div
+																					class="col-6 p-0 position-relative image-overlap-shadow">
+																					<a href="javascript:void();"> <img
+																						src="/images/book/{{p.image}}"
+																						class="img-fluid rounded w-100"></a>
+																					<div class="view-book">
+																						<a href="/product/detail/{{p.id}}"
+																							class="btn btn-sm btn-white">Xem Ngay</a> <a
+																							ng-click="checkAddOrRemove(p.id)"
+																							class="btn btn-sm btn-white">Like</a>
+																					</div>
+																				</div>
+																				<div class="col-6">
+																					<div class="mb-2">
+																						<h6 class="mb-1">{{p.name}}</h6>
+																						<p class="font-size-13 line-height mb-1">{{p.author.name}}</p>
+																						<div class="d-block line-height">
+																							<span class="font-size-11 text-warning"> <i
+																								class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i>
+																							</span>
+																						</div>
+																					</div>
+																					<div class="price d-flex align-items-center">
+																						<h6>
+																							<b>{{p.price | number:0}}</b> VND
+																						</h6>
+																					</div>
+																					<div class="iq-product-action">
+																						<a href=""><i ng-click="addcart(p)"
+																							class="ri-shopping-cart-2-fill text-primary"></i></a>
+																						<a ng-repeat="f in favorites"
+																							ng-show="f.book.id === p.id"
+																							ng-click="checkAddOrRemove(p.id)" href=""
+																							style="color: red" class="ri-heart-fill"></a>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="carousel-item">
+															<div class="row">
+																<div class="col-lg-4 item"
+																	ng-repeat="p in productAnime2">
+																	<div
+																		class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+																		<div class="iq-card-body p-0">
+																			<div class="d-flex align-items-center">
+																				<div
+																					class="col-6 p-0 position-relative image-overlap-shadow">
+																					<a href="javascript:void();"> <img
+																						src="/images/book/{{p.image}}"
+																						class="img-fluid rounded w-100"></a>
+																					<div class="view-book">
+																						<a href="/product/detail/{{p.id}}"
+																							class="btn btn-sm btn-white">Xem Ngay</a> <a
+																							ng-click="checkAddOrRemove(p.id)"
+																							class="btn btn-sm btn-white">Like</a>
+																					</div>
+																				</div>
+																				<div class="col-6">
+																					<div class="mb-2">
+																						<h6 class="mb-1">{{p.name}}</h6>
+																						<p class="font-size-13 line-height mb-1">{{p.author.name}}</p>
+																						<div class="d-block line-height">
+																							<span class="font-size-11 text-warning"> <i
+																								class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i>
+																							</span>
+																						</div>
+																					</div>
+																					<div class="price d-flex align-items-center">
+																						<h6>
+																							<b>{{p.price | number:0}}</b> VND
+																						</h6>
+																					</div>
+																					<div class="iq-product-action">
+																						<a href=""><i ng-click="addcart(p)"
+																							class="ri-shopping-cart-2-fill text-primary"></i></a>
+																						<a ng-repeat="f in favorites"
+																							ng-show="f.book.id === p.id"
+																							ng-click="checkAddOrRemove(p.id)" href=""
+																							style="color: red" class="ri-heart-fill"></a>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="carousel-item">
+															<div class="row">
+																<div class="col-lg-4 item"
+																	ng-repeat="p in productAnime3">
+																	<div
+																		class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+																		<div class="iq-card-body p-0">
+																			<div class="d-flex align-items-center">
+																				<div
+																					class="col-6 p-0 position-relative image-overlap-shadow">
+																					<a href="javascript:void();"> <img
+																						src="/images/book/{{p.image}}"
+																						class="img-fluid rounded w-100"></a>
+																					<div class="view-book">
+																						<a href="/product/detail/{{p.id}}"
+																							class="btn btn-sm btn-white">Xem Ngay</a> <a
+																							ng-click="checkAddOrRemove(p.id)"
+																							class="btn btn-sm btn-white">Like</a>
+																					</div>
+																				</div>
+																				<div class="col-6">
+																					<div class="mb-2">
+																						<h6 class="mb-1">{{p.name}}</h6>
+																						<p class="font-size-13 line-height mb-1">{{p.author.name}}</p>
+																						<div class="d-block line-height">
+																							<span class="font-size-11 text-warning"> <i
+																								class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i>
+																							</span>
+																						</div>
+																					</div>
+																					<div class="price d-flex align-items-center">
+																						<h6>
+																							<b>{{p.price | number:0}}</b> VND
+																						</h6>
+																					</div>
+																					<div class="iq-product-action">
+																						<a href=""><i ng-click="addcart(p)"
+																							class="ri-shopping-cart-2-fill text-primary"></i></a>
+																						<a ng-repeat="f in favorites"
+																							ng-show="f.book.id === p.id"
+																							ng-click="checkAddOrRemove(p.id)" href=""
+																							style="color: red" class="ri-heart-fill"></a>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-1">
+												<button class="carousel-control-next" type="button"
+													data-target="#Anime" data-slide="next"
+													style="border: none; background: #DDDDDD; width: 50%; height: 90%; border-radius: 5px"
+													ng-click="nextSlide()">
+													<span class="carousel-control-next-icon" aria-hidden="true"></span>
+													<span class="sr-only">Next</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-8">
+								<div class="iq-card " style="height: 450px; padding: 10px;">
+									<div class="iq-card-body">
+										<div class="row" style="height: 440px">
+											<div class="col-lg-1">
+												<button class="carousel-control-prev" type="button"
+													data-target="#Manga" data-slide="prev"
+													style="border: none; background: #DDDDDD; width: 50%; height: 90%; border-radius: 5px"
+													ng-click="prevSlide()">
+													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+													<span class="sr-only">Previous</span>
+												</button>
+											</div>
+											<div class="col-lg-10">
+												<div id="Manga" class="carousel slide" data-ride="carousel">
+													<div class="carousel-inner">
+														<div class="carousel-item active">
+															<div class="row">
+																<div class="col-lg-4 item" ng-repeat="p in productKns">
+																	<div
+																		class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+																		<div class="iq-card-body p-0">
+																			<div class="d-flex align-items-center">
+																				<div
+																					class="col-6 p-0 position-relative image-overlap-shadow">
+																					<a href="javascript:void();"> <img
+																						src="/images/book/{{p.image}}"
+																						class="img-fluid rounded w-100"></a>
+																					<div class="view-book">
+																						<a href="/product/detail/{{p.id}}"
+																							class="btn btn-sm btn-white">Xem Ngay</a> <a
+																							ng-click="checkAddOrRemove(p.id)"
+																							class="btn btn-sm btn-white">Like</a>
+																					</div>
+																				</div>
+																				<div class="col-6">
+																					<div class="mb-2">
+																						<h6 class="mb-1">{{p.name}}</h6>
+																						<p class="font-size-13 line-height mb-1">{{p.author.name}}</p>
+																						<div class="d-block line-height">
+																							<span class="font-size-11 text-warning"> <i
+																								class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i>
+																							</span>
+																						</div>
+																					</div>
+																					<div class="price d-flex align-items-center">
+																						<h6>
+																							<b>{{p.price | number:0}}</b> VND
+																						</h6>
+																					</div>
+																					<div class="iq-product-action">
+																						<a href=""><i ng-click="addcart(p)"
+																							class="ri-shopping-cart-2-fill text-primary"></i></a>
+																						<a ng-repeat="f in favorites"
+																							ng-show="f.book.id === p.id"
+																							ng-click="checkAddOrRemove(p.id)" href=""
+																							style="color: red" class="ri-heart-fill"></a>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="carousel-item">
+															<div class="row">
+																<div class="col-lg-4 item" ng-repeat="p in productKns2">
+																	<div
+																		class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+																		<div class="iq-card-body p-0">
+																			<div class="d-flex align-items-center">
+																				<div
+																					class="col-6 p-0 position-relative image-overlap-shadow">
+																					<a href="javascript:void();"> <img
+																						src="/images/book/{{p.image}}"
+																						class="img-fluid rounded w-100"></a>
+																					<div class="view-book">
+																						<a href="/product/detail/{{p.id}}"
+																							class="btn btn-sm btn-white">Xem Ngay</a> <a
+																							ng-click="checkAddOrRemove(p.id)"
+																							class="btn btn-sm btn-white">Like</a>
+																					</div>
+																				</div>
+																				<div class="col-6">
+																					<div class="mb-2">
+																						<h6 class="mb-1">{{p.name}}</h6>
+																						<p class="font-size-13 line-height mb-1">{{p.author.name}}</p>
+																						<div class="d-block line-height">
+																							<span class="font-size-11 text-warning"> <i
+																								class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i>
+																							</span>
+																						</div>
+																					</div>
+																					<div class="price d-flex align-items-center">
+																						<h6>
+																							<b>{{p.price | number:0}}</b> VND
+																						</h6>
+																					</div>
+																					<div class="iq-product-action">
+																						<a href=""><i ng-click="addcart(p)"
+																							class="ri-shopping-cart-2-fill text-primary"></i></a>
+																						<a ng-repeat="f in favorites"
+																							ng-show="f.book.id === p.id"
+																							ng-click="checkAddOrRemove(p.id)" href=""
+																							style="color: red" class="ri-heart-fill"></a>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="carousel-item">
+															<div class="row">
+																<div class="col-lg-4 item" ng-repeat="p in productKns3">
+																	<div
+																		class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+																		<div class="iq-card-body p-0">
+																			<div class="d-flex align-items-center">
+																				<div
+																					class="col-6 p-0 position-relative image-overlap-shadow">
+																					<a href="javascript:void();"> <img
+																						src="/images/book/{{p.image}}"
+																						class="img-fluid rounded w-100"></a>
+																					<div class="view-book">
+																						<a href="/product/detail/{{p.id}}"
+																							class="btn btn-sm btn-white">Xem Ngay</a> <a
+																							ng-click="checkAddOrRemove(p.id)"
+																							class="btn btn-sm btn-white">Like</a>
+																					</div>
+																				</div>
+																				<div class="col-6">
+																					<div class="mb-2">
+																						<h6 class="mb-1">{{p.name}}</h6>
+																						<p class="font-size-13 line-height mb-1">{{p.author.name}}</p>
+																						<div class="d-block line-height">
+																							<span class="font-size-11 text-warning"> <i
+																								class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																								<i class="fa fa-star"></i>
+																							</span>
+																						</div>
+																					</div>
+																					<div class="price d-flex align-items-center">
+																						<h6>
+																							<b>{{p.price | number:0}}</b> VND
+																						</h6>
+																					</div>
+																					<div class="iq-product-action">
+																						<a href=""><i ng-click="addcart(p)"
+																							class="ri-shopping-cart-2-fill text-primary"></i></a>
+																						<a ng-repeat="f in favorites"
+																							ng-show="f.book.id === p.id"
+																							ng-click="checkAddOrRemove(p.id)" href=""
+																							style="color: red" class="ri-heart-fill"></a>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-1">
+												<button class="carousel-control-next" type="button"
+													data-target="#Manga" data-slide="next"
+													style="border: none; background: #DDDDDD; width: 50%; height: 90%; border-radius: 5px"
+													ng-click="nextSlide()">
+													<span class="carousel-control-next-icon" aria-hidden="true"></span>
+													<span class="sr-only">Next</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="iq-card"
+									style="height: 450px; padding: 10px; text-align: center">
+									<div class="iq-header-title text-center">
+										<h4 class="card-title">Thể Loại Manga</h4>
+									</div>
+									<img width="250px" alt=""
+										src="https://cdn.khosachonline.com/uploads/2020/01/724/nuoi-duong-bao-vuong.jpg">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 iq-card">
+						<div class="iq-header-title text-center"
+							style="margin-top: 10px; margin-bottom: 10px">
+							<h4 class="card-title">Dành cho bạn</h4>
+						</div>
+						<div class="row"
+							style="margin-left: 3px; margin-right: 3px; margin-top: 10px">
+							<div class="col-lg-1">
+
+								<button class="carousel-control-prev" type="button"
+									data-target="#sanPhamBanChay" data-slide="prev"
+									style="border: none; background: #DDDDDD; width: 50%; height: 90%; border-radius: 5px"
+									ng-click="prevSlide()">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</button>
+							</div>
+							<div class="col-lg-10" style="height: 500px">
+								<div id="sanPhamBanChay" class="carousel slide"
+									data-ride="carousel">
+									<div class="carousel-inner">
+										<div class="carousel-item active">
+											<div class="row">
+												<div class="col-lg-3 item"
+													ng-repeat="pro in limitedProducts">
+													<div
+														class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+														<div class="iq-card-body p-0">
+															<div class="d-flex align-items-center">
+																<div
+																	class="col-6 p-0 position-relative image-overlap-shadow">
+																	<a href="javascript:void();"> <img
+																		src="/images/book/{{pro.image}}"
+																		class="img-fluid rounded w-100"></a>
+																	<div class="view-book">
+																		<a href="/product/detail/{{pro.id}}"
+																			class="btn btn-sm btn-white">Xem Ngay</a> <a
+																			ng-click="checkAddOrRemove(p.id)"
+																			class="btn btn-sm btn-white">Like</a>
+																	</div>
+																</div>
+																<div class="col-6">
+																	<div class="mb-2">
+																		<h6 class="mb-1">{{pro.name}}</h6>
+																		<p class="font-size-13 line-height mb-1">{{pro.author.name}}</p>
+																		<div class="d-block line-height">
+																			<span class="font-size-11 text-warning"> <i
+																				class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																				class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																				class="fa fa-star"></i>
+																			</span>
+																		</div>
+																	</div>
+																	<div class="price d-flex align-items-center">
+																		<h6>
+																			<b>{{pro.price | number:0}}</b> VND
+																		</h6>
+																	</div>
+																	<div class="iq-product-action">
+																		<a href=""><i ng-click="addcart(pro)"
+																			class="ri-shopping-cart-2-fill text-primary"></i></a> <a
+																			ng-repeat="f in favorites"
+																			ng-show="f.book.id === pro.id"
+																			ng-click="checkAddOrRemove(pro.id)" href=""
+																			style="color: red" class="ri-heart-fill"></a>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="carousel-item">
+											<div class="row">
+												<div class="col-lg-3 item"
+													ng-repeat="pro2 in limitedProducts2">
+													<div
+														class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+														<div class="iq-card-body p-0">
+															<div class="d-flex align-items-center">
+																<div
+																	class="col-6 p-0 position-relative image-overlap-shadow">
+																	<a href="javascript:void();"> <img
+																		src="/images/book/{{pro2.image}}"
+																		class="img-fluid rounded w-100"></a>
+																	<div class="view-book">
+																		<a href="/product/detail/{{pro2.id}}"
+																			class="btn btn-sm btn-white">Xem Ngay</a> <a
+																			ng-click="checkAddOrRemove(pro2.id)"
+																			class="btn btn-sm btn-white">Like</a>
+																	</div>
+																</div>
+																<div class="col-6">
+																	<div class="mb-2">
+																		<h6 class="mb-1">{{pro2.name}}</h6>
+																		<p class="font-size-13 line-height mb-1">{{pro2.author.name}}</p>
+																		<div class="d-block line-height">
+																			<span class="font-size-11 text-warning"> <i
+																				class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																				class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																				class="fa fa-star"></i>
+																			</span>
+																		</div>
+																	</div>
+																	<div class="price d-flex align-items-center">
+																		<h6>
+																			<b>{{pro2.price | number:0}}</b> VND
+																		</h6>
+																	</div>
+																	<div class="iq-product-action">
+																		<a href=""><i ng-click="addcart(p2)"
+																			class="ri-shopping-cart-2-fill text-primary"></i></a> <a
+																			ng-repeat="f in favorites"
+																			ng-show="f.book.id === pro2.id"
+																			ng-click="checkAddOrRemove(pro2.id)" href=""
+																			style="color: red" class="ri-heart-fill"></a>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="carousel-item">
+											<div class="row">
+												<div class="col-lg-3 item"
+													ng-repeat="pro3 in limitedProducts3">
+													<div
+														class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+														<div class="iq-card-body p-0">
+															<div class="d-flex align-items-center">
+																<div
+																	class="col-6 p-0 position-relative image-overlap-shadow">
+																	<a href="javascript:void();"> <img
+																		src="/images/book/{{pro3.image}}"
+																		class="img-fluid rounded w-100"></a>
+																	<div class="view-book">
+																		<a href="/product/detail/{{pro3.id}}"
+																			class="btn btn-sm btn-white">Xem Ngay</a> <a
+																			ng-click="checkAddOrRemove(p3.id)"
+																			class="btn btn-sm btn-white">Like</a>
+																	</div>
+																</div>
+																<div class="col-6">
+																	<div class="mb-2">
+																		<h6 class="mb-1">{{pro3.name}}</h6>
+																		<p class="font-size-13 line-height mb-1">{{pro3.author.name}}</p>
+																		<div class="d-block line-height">
+																			<span class="font-size-11 text-warning"> <i
+																				class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																				class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																				class="fa fa-star"></i>
+																			</span>
+																		</div>
+																	</div>
+																	<div class="price d-flex align-items-center">
+																		<h6>
+																			<b>{{pro3.price | number:0}}</b> VND
+																		</h6>
+																	</div>
+																	<div class="iq-product-action">
+																		<a href=""><i ng-click="addcart(p3)"
+																			class="ri-shopping-cart-2-fill text-primary"></i></a> <a
+																			ng-repeat="f in favorites"
+																			ng-show="f.book.id === pro3.id"
+																			ng-click="checkAddOrRemove(pro3.id)" href=""
+																			style="color: red" class="ri-heart-fill"></a>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-1">
+								<button class="carousel-control-next" type="button"
+									data-target="#sanPhamBanChay" data-slide="next"
+									style="border: none; background: #DDDDDD; width: 50%; height: 90%; border-radius: 5px"
+									ng-click="nextSlide()">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+							<div class="iq-card-header d-flex justify-content-between mb-0">
+								<div class="iq-header-title text-center">
+									<h4 class="card-title">Chương trình giảm giá</h4>
+								</div>
+
+							</div>
+							<div class="iq-card-body">
+								<div class="row">
+									<div class="col-sm-6 col-md-4 col-lg-3"
+										ng-repeat="p in bestseller">
+										<div
+											class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+											<div class="iq-card-body p-0">
+												<div class="d-flex align-items-center">
+
+													<div
+														class="col-6 p-0 position-relative image-overlap-shadow">
+														<a href="javascript:void();"> <img
+															src="/images/book/{{p.book.image}}"
+															class="img-fluid rounded w-100"></a>
+														<div class="view-book">
+															<a href="/product/detail/{{p.book.id}}"
+																class="btn btn-sm btn-white">Xem Ngay</a> <a
+																ng-click="checkAddOrRemove(p.book.id)"
+																class="btn btn-sm btn-white">Like</a>
+														</div>
+													</div>
+													<div class="col-6">
+														<div class="mb-2">
+															<h6 class="mb-1">{{p.book.name}}</h6>
+															<p class="font-size-13 line-height mb-1">{{p.book.author.name}}</p>
+
+														</div>
+														<div class="price d-flex align-items-center">
+															<h6>
+																<span class="font-size-10 pr-2 old-price">{{p.book.price
+																	| number:0}} ₫</span> <span class="badge badge-danger">{{p.discount}}%</span>
+																<span class="font-size-12 text-dark">{{
+																	p.book.price - (p.book.price * (p.discount / 100)) |
+																	number:0 }} ₫</span>
+															</h6>
+														</div>
+														<div class="mb-2">
+															<h6 class="mb-1">{{
+																calculateRemainingTime(p.enddate) }}</h6>
+
+														</div>
+														<div class="iq-product-action">
+
+															<a href=""><i
+																ng-click="addcartbestseller(p,p.book.price - (p.book.price * (p.discount / 100)), calculateRemainingTime(p.enddate))"
+																class="ri-shopping-cart-2-fill text-primary"></i></a> <a
+																ng-repeat="f in favorites"
+																ng-show="f.book.id === p.book.id"
+																ng-click="checkAddOrRemove(p.book.id)"
+																style="color: red" class="ri-heart-fill"></a>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var uiElements = document.getElementById('ui-elements');
+		if (uiElements.classList.contains('collapse')) {
+			uiElements.classList.remove('collapse');
+			uiElements.classList.add('show'); // Thêm lớp 'show' để hiển thị phần tử
+		} else {
+			uiElements.classList.add('collapse');
+			uiElements.classList.remove('show'); // Loại bỏ lớp 'show' để ẩn phần tử
+		}
+	</script>
+</body>
+</html>

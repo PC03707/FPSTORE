@@ -1,0 +1,155 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>NHASACHTV - FPOLY</title>
+	<!-- Favicon -->
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div id="content-page" class="content-page">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12" style="padding-bottom: 20px; padding-top: 60px">
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="iq-sidebar iq-card" style="height: 450px">
+									<div id="sidebar-scrollbar">
+										<nav class="iq-sidebar-menu">
+											<ul id="iq-sidebar-toggle" class="iq-menu">
+												<li><a href="#ui-elements" class="iq-waves-effect collapsed"
+														data-toggle="collapse" aria-expanded="false"><i
+															class="lab la-elementor iq-arrow-left"></i><span>Danh
+															mục sản phẩm</span><i
+															class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+													<ul id="ui-elements" class="iq-submenu collapse"
+														data-parent="#iq-sidebar-toggle">
+														<li ng-repeat="c in categories" class="elements"><a
+																ng-click="productcategory(c.id)"
+																class="iq-waves-effect collapsed" data-toggle="collapse"
+																aria-expanded="false"><i
+																	class="ri-play-circle-line"></i><span>{{c.name}}</span></a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</nav>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+											<div
+												class="iq-card-header d-flex justify-content-between align-items-center position-relative">
+												<div class="iq-header-title">
+													<h4 class="card-title mb-0">Gợi ý cho bạn</h4>
+												</div>
+											</div>
+											<div class="iq-card-body">
+												<div class="row text-center">
+													<div class="col-sm-6 col-md-4 col-lg-3"
+														ng-repeat="p in pager.products">
+														<div
+															class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
+															<div class="iq-card-body p-0">
+																<div class="d-flex align-items-center">
+																	<div
+																		class="col-6 p-0 position-relative image-overlap-shadow">
+																		<a href="javascript:void();"> <img
+																				src="/images/book/{{p.image}}"
+																				class="img-fluid rounded w-100"></a>
+																		<div class="view-book">
+																			<a href="/product/detail/{{p.id}}"
+																				class="btn btn-sm btn-white">Xem
+																				Ngay</a> <a
+																				ng-click="checkAddOrRemove(p.id)"
+																				class="btn btn-sm btn-white">Like</a>
+																		</div>
+																	</div>
+																	<div class="col-6">
+																		<div class="mb-2">
+																			<h6 class="mb-1">{{p.name}}</h6>
+																			<p class="font-size-13 line-height mb-1">
+																				{{p.author.name}}</p>
+																			<div class="d-block line-height">
+																				<span class="font-size-11 text-warning">
+																					<i class="fa fa-star"></i> <i
+																						class="fa fa-star"></i>
+																					<i class="fa fa-star"></i> <i
+																						class="fa fa-star"></i>
+																					<i class="fa fa-star"></i>
+																				</span>
+																			</div>
+																		</div>
+																		<div class="price d-flex align-items-center">
+																			<h6>
+																				<b>{{p.price | number:0}}</b> VND
+																			</h6>
+																		</div>
+																		<div class="iq-product-action">
+																			<a href=""><i ng-click="addcart(p)"
+																					class="ri-shopping-cart-2-fill text-primary"></i></a>
+																			<a ng-repeat="f in favorites"
+																				ng-show="f.book.id === p.id"
+																				ng-click="checkAddOrRemove(p.id)"
+																				href="" style="color: red"
+																				class="ri-heart-fill"></a>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<nav aria-label="Page navigation example">
+															<ul class="pagination">
+																<li class="page-item"><a ng-click="pager.first()"
+																		class="page-link">First</a></li>
+																<li class="page-item"><a class="page-link"
+																		ng-click="pager.prev()">Prev</a></li>
+																<li class="page-item">
+																	<button class="page-link">{{pager.page + 1}}
+																		of{{pager.count}}</button>
+																</li>
+																<li class="page-item"><a class="page-link"
+																		ng-click="pager.next()">Next</a></li>
+																<li class="page-item"><a class="page-link"
+																		ng-click="pager.last()">Last</a></li>
+															</ul>
+														</nav>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12"></div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var uiElements = document.getElementById('ui-elements');
+		if (uiElements.classList.contains('collapse')) {
+			uiElements.classList.remove('collapse');
+			uiElements.classList.add('show'); // Thêm lớp 'show' để hiển thị phần tử
+		} else {
+			uiElements.classList.add('collapse');
+			uiElements.classList.remove('show'); // Loại bỏ lớp 'show' để ẩn phần tử
+		}
+	</script>
+</body>
+
+</html>

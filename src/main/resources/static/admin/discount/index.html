@@ -1,0 +1,126 @@
+
+<!-- Page Content  -->
+<div id="content-page" class="">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="iq-card">
+					<div class="iq-card-header d-flex justify-content-between">
+						<div class="iq-header-title">
+							<h4 class="card-title">Thêm mã sản phẩm giảm giá</h4>
+						</div>
+					</div>
+					<div class="iq-card-body">
+						<form method="post" >
+							<div class="form-group">
+								<label>Mã giảm giá:</label> <input readonly="readonly" type="text"
+									class="form-control" ng-model="form.id">
+							</div>
+
+							<div class="form-group">
+								<label>Mã sản phẩm và tên:</label> <select  class="form-control"
+									id="exampleFormControlSelect1" ng-model="form.book.id">
+									<option  ng-repeat="c in product" ng-value="c.id">{{c.id}}
+										: {{c.name}}</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Phần trăm giảm giá:</label> <input type="number"
+									class="form-control" ng-model="form.discount">
+							</div>
+							<div class="form-group">
+								<label>Ngày bắt đầu:</label> <input type="date"
+									class="form-control" ng-model="form.startdate">
+							</div>
+							<div class="form-group">
+								<label>Ngày kết thúc:</label> <input type="date"
+									class="form-control" ng-model="form.enddate">
+							</div>
+
+							<button ng-click="create()" class="btn btn-primary"
+								ng-hide="index == -1">
+								<i class="bi bi-person-plus"></i> Thêm
+							</button>
+							<button ng-click="update()" class="btn btn-primary"
+								ng-show="index == -1">
+								<i class="bi bi-person-add"></i> Cập nhật
+							</button>
+							<button ng-click="delete(form)" class="btn btn-danger"
+								ng-show="index == -1">
+								<i class="bi bi-trash3"></i> Xóa
+							</button>
+							<button ng-click="reset()" class="btn btn-info">
+								<i class="bi bi-arrow-clockwise"></i> Làm mới
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="iq-card">
+					<div class="iq-card-header d-flex justify-content-between">
+						<div class="iq-header-title">
+							<h4 class="card-title">Danh sách sản phẩm giảm giá</h4>
+						</div>
+
+					</div>
+					<div class="iq-card-body">
+						<div class="table-responsive">
+							<table class="data-tables table table-striped table-bordered"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th>Mã giảm giá</th>
+										<th>Mã sản phẩm</th>
+										<th>Phần trăm giảm giá</th>
+										<th>Tên sản phẩm</th>
+										<th>Ngày bắt đầu</th>
+										<th>Ngày kết thúc</th>
+										<th>Thao tác</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in pager.items">
+										<td >{{item.id}}</td>
+										<td>{{item.book.id}}</td>
+										<td>{{item.discount}}</td>
+										<td>{{item.book.name}}</td>
+										<td>{{item.startdate | date:'dd/MM/yyyy'}}</td>
+										<td>{{item.enddate |date:'dd/MM/yyyy'}}</td>
+
+										<td>
+											<div class="flex align-items-center list-user-action">
+												<a class="bg-primary" ng-click="edit(item)"><i
+													class="ri-pencil-line"></i></a> <a class="bg-danger"
+													ng-click="delete(item)"><i class="ri-delete-bin-line"></i></a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="card-header text-center">
+					<button ng-click="pager.first()" class="btn btn-danger">
+						<i class="fas fa-arrow-to-left"></i>
+					</button>
+					<button ng-click="pager.prev()" class="btn btn-primary">
+						<i class="fas fa-arrow-left"></i>
+					</button>
+					<button class="btn btn-success">{{pager.page + 1}} of
+						{{pager.count?pager.count:'1'}}</button>
+					<button ng-click="pager.next()" class="btn btn-primary">
+						<i class="fas fa-arrow-right"></i>
+					</button>
+					<button ng-click="pager.last()" class="btn btn-danger">
+						<i class="fas fa-arrow-to-right"></i>
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+

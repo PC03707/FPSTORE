@@ -1,0 +1,119 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Cập nhật thông tin cá nhân</title>
+<!-- Favicon -->
+
+</head>
+<body>
+	<div id="content-page" class="content-page">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="iq-card">
+						<div class="iq-card-body p-0">
+							<div class="iq-edit-list">
+								<ul class="iq-edit-profile d-flex nav nav-pills">
+									<li class="col-md-6 p-0"><a class="nav-link active"
+										data-toggle="pill" href="#personal-information"> Thông tin
+											cá nhân </a></li>
+									<li class="col-md-6 p-0"><a class="nav-link"
+										data-toggle="pill" href="#chang-pwd"> Đổi mật khẩu </a></li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="iq-edit-list-data">
+						<div class="tab-content">
+							<div class="tab-pane fade active show" id="personal-information"
+								role="tabpanel">
+								<div class="iq-card">
+									<div class="iq-card-header d-flex justify-content-between">
+										<div class="iq-header-title">
+											<h4 class="card-title">Thông tin cá nhân</h4>
+										</div>
+									</div>
+									<div class="iq-card-body">
+										<form ng-init="getAccountByUsername()">
+											<div class="row align-items-center">
+												<div class="form-group col-sm-6">
+													<label>Tài Khoản: (*)</label> <input type="text"
+														class="form-control" ng-readonly="username !== null"
+														ng-model="form.username">
+												</div>
+												<div class="form-group col-sm-6">
+													<label>Tên người dùng: (*)</label> <input type="text"
+														class="form-control" ng-model="form.fullname"> <i
+														ng-show="form.fullname && form.fullname.length > 50"
+														style="color: red;">Tên người dùng không quá 50 ký tự</i>
+												</div>
+												<div class="form-group col-sm-6">
+													<label>Email: (*)</label> <input type="email"
+														class="form-control" ng-model="form.email"
+														ng-readonly="email !== null">
+												</div>
+												<div class="form-group col-sm-6">
+													<label>Số điện thoại: (*)</label> <input type="text"
+														class="form-control" ng-model="form.phone"> <i
+														ng-show="form.phone && form.phone.length !== 10"
+														style="color: red;">Số điện thoại phải có 10 ký tự</i>
+												</div>
+												<div class="form-group col-sm-12">
+													<label>Địa chỉ: (*)</label> <input type="text"
+														class="form-control" ng-model="form.address">
+												</div>
+											</div>
+											<button type="button" class="btn btn-primary mr-2"
+												ng-click="updateAccount()">Cập nhật</button>
+										</form>
+
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+								<div class="iq-card">
+									<div class="iq-card-header d-flex justify-content-between">
+										<div class="iq-header-title">
+											<h4 class="card-title">Đổi mật khẩu</h4>
+										</div>
+									</div>
+									<div class="iq-card-body">
+										<form>
+											<div class="form-group">
+												<label for="cpass">Mật khẩu hiện tại: (*)</label> <input
+													type="Password" class="form-control" id="pwold" value="">
+											</div>
+											<div class="form-group">
+												<label for="npass">Mật khẩu mới: (*)</label> <input
+													type="Password" id="pawword" name="password"
+													class="form-control" value="">
+											</div>
+											<div class="form-group">
+												<label for="vpass">Xác nhận lại mật khẩu:</label> <input
+													type="Password" id="cfpw" class="form-control" value="">
+											</div>
+											<button ng-click="updatematkhau()" type="submit"
+												class="btn btn-primary mr-2">Gửi</button>
+											<button type="reset" class="btn iq-bg-danger">Hủy bỏ</button>
+										</form>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

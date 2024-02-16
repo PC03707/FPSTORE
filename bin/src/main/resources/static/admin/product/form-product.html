@@ -1,0 +1,57 @@
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="iq-card">
+			<div class="iq-card-header d-flex justify-content-between">
+				
+			</div>
+			<div class="iq-card-body">
+				<div class="form-group">
+					<label>Mã sách:</label> <input type="text" class="form-control"
+						ng-model="form.id" readonly="true">
+				</div>
+				<div class="form-group">
+					<label>Tên sách:</label> <input type="text" class="form-control"
+						ng-model="form.name">
+				</div>
+				<div class="form-group">
+					<label>Danh mục sách:</label> <select class="form-control"
+						id="exampleFormControlSelect1" ng-model="form.category.id">
+						<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Tác giả sách:</label> <select ng-model="form.author.id"
+						class="form-control" id="exampleFormControlSelect2">
+						<option ng-repeat="a in auth" ng-value="a.id">{{a.name}}</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Hình ảnh:</label>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" ng-model="form.image"
+							accept="image/png, image/jpeg"
+							onchange="angular.element(this).scope().imageChanged(this.files)">
+						<label class="custom-file-label">{{ form.imageName ||
+							'Chọn file' }}</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Giá sách:</label> <input type="text" class="form-control"
+						ng-model="form.price">
+				</div>
+				<div class="form-group">
+					<label>Nội dung:</label>
+					<textarea class="form-control" rows="4"
+						ng-model="form.discriptions"></textarea>
+				</div>
+				<button ng-click="create()" class="btn btn-primary"><i class="bi bi-folder-plus"></i> Thêm</button>
+				<button ng-click="update()" class="btn btn-success"><i class="bi bi-pencil-square"></i> Cập nhật</button>
+				<button ng-click="delete(form)" class="btn btn-danger"><i class="bi bi-trash3"></i> Xóa</button>
+				<button ng-click="reset()" class="btn btn-info"><i class="bi bi-arrow-clockwise"></i> Làm mới</button>
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,137 @@
+<!-- Page Content  -->
+<div id="content-page" class="">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="iq-card">
+					<div class="iq-card-header d-flex justify-content-between">
+						<div class="iq-header-title">
+							<h4 class="card-title">Người dùng</h4>
+						</div>
+					</div>
+					<div class="iq-card-body">
+						<form method="post" enctype="multipart/form-data">
+							<div class="row">
+								<!-- <div class="col-md-4">
+									<div class="row align-items-center">
+										<a href="javascript:void(0);"> <img ng-src="{{'/images/user/' + form.photo}}"
+												class="img-fluid w-100 rounded" alt="">
+										</a>
+									</div>
+								</div> -->
+								<div class="col-md-12">
+									<div class="form-group" >
+										<label>Tên đăng nhập:</label> <input type="text" class="form-control" th:readonly="{{form.username != null}}"
+											ng-model="form.username"> <i th:errors="*{username}"></i>
+									</div>
+									<div class="form-group">
+										<label>Họ và tên:</label> <input type="text" class="form-control"
+											ng-model="form.fullname"> <i th:errors="*{fullname}"></i>
+									</div>
+									<div class="form-group">
+										<label>Mật Khẩu:</label> <input type="password" class="form-control"
+											ng-model="form.password"> <i th:errors="*{password}"></i>
+									</div>
+									<div class="form-group">
+										<label>Email:</label> <input type="email" class="form-control"
+											ng-model="form.email"> <i th:errors="*{email}"></i>
+									</div>
+									<div class="form-group">
+										<label>Phone:</label> <input type="tel" class="form-control"
+											ng-model="form.phone"> <i th:errors="*{phone}"></i>
+									</div>
+									<div class="form-group">
+										<label>Address:</label> <input type="text" class="form-control"
+											ng-model="form.address"> <i ng-model="form.address"></i>
+									</div>
+									<div class="form-group">
+										<label>Hình ảnh:</label>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" id="photo"
+												onchange={angular.element(this).scope().imageChanged(this.files)}
+												accept="image/png, image/jpeg"> <label class="custom-file-label">Choose
+												file</label><label class="custom-file-label">Choose file</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<button ng-click="create()" class="btn btn-primary" ng-hide="index == -1"><i class="bi bi-person-plus"></i> Thêm</button>
+										<button ng-click="update()" class="btn btn-primary" ng-show="index == -1"><i class="bi bi-person-add"></i> Cập nhật</button>
+										<button ng-click="delete(form)" class="btn btn-danger" ng-show="index == -1"><i class="bi bi-trash3"></i> Xóa</button>
+										<button ng-click="reset()" class="btn btn-info"><i class="bi bi-arrow-clockwise"></i> Làm mới</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="iq-card">
+					<div class="iq-card-header d-flex justify-content-between">
+						<div class="iq-header-title">
+							<h4 class="card-title">Danh sách người dùng</h4>
+						</div>
+
+					</div>
+					<div class="iq-card-body">
+						<div class="table-responsive">
+							<table class="table mb-0 table-borderless">
+								<thead>
+									<tr>
+										<th scope="col">Ảnh</th>
+										<th scope="col">Tên đăng nhập</th>
+										<th scope="col">Tên đầy đủ</th>
+										<th scope="col">Email</th>
+										<th scope="col">Số điện thoại</th>
+										<th scope="col">Địa chỉ</th>
+										<th scope="col">Tùy chọn</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in pager.items">
+										<td><img src="../../../images/user/{{item.photo}}" width="70px" />
+										</td>
+										<td>{{item.username}}</td>
+										<td>{{item.fullname}}</td>
+										<td>{{item.email}}</td>
+										<td>{{item.phone}}</td>
+										<td>{{item.address}}</td>
+										<td>
+											<a class="btn btn-pill btn-success" ng-click="edit(item)">Sửa</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="cart-footer text-center">
+							<button ng-click="pager.first()" class="btn btn-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+								  </svg>
+							</button>
+							<button ng-click="pager.prev()" class="btn btn-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+								  </svg>
+							</button>
+							<button class="btn btn-primary">{{pager.page +1}} of
+								{{pager.count}}</button>
+							<button ng-click="pager.next()" class="btn btn-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+								  </svg>
+							</button>
+							<button ng-click="pager.last()" class="btn btn-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+								  </svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

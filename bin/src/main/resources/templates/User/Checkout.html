@@ -1,0 +1,293 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Giỏ hàng</title>
+
+</head>
+
+<body>
+	<div id="content-page" class="content-page">
+		<div class="container-fluid checkout-content" style="width: 80%;">
+			<div class="row">
+				<div id="cart" class="p-0 col-12">
+					<div class="row align-item-center">
+						<div class="col-lg-12">
+							<div class="iq-card">
+								<div class="iq-card-header d-flex justify-content-between iq-border-bottom mb-0">
+								</div>
+								<div class="iq-card-body shopping__cart__table">
+									<table class="table">
+										<thead>
+											<tr>
+												<th style="width: 5%;"></th>
+												<th style="width: 35%; font-weight: bold;">SÁCH</th>
+												<th style="width: 30%;">SỐ LƯỢNG</th>
+												<th style="width: 30%;">THÀNH TIỀN</th>
+												<th style="width: 10%;"></th>
+											</tr>
+										</thead>
+										<tbody ng-repeat="cd in cartdetails">
+											<tr>
+												<td><input type="checkbox" onchange="batdk()" name="cdid"
+														value="{{cd.id}}" ng-model="selected" ng-checked="exist(cd)"
+														ng-click="toggleSelection(cd)" /></td>
+												<td>
+													<div class="product__cart__item__text">
+														<div class="row">
+															<div class="col-3">
+																<span class="checkout-product-img"> <a href=""><img
+																			class="img-fluid rounded"
+																			th:src="@{|/images/book/{{cd.book.image}}|}"
+																			alt="" style="width: 90%;"></a>
+																</span></div>
+															<div class="col-9 mt-3">
+																<b>{{ cd.book.name | limitTo: 25 }}{{ cd.book.name.length > 25 ? '...' : '' }}</b>
+																<br>
+																<span>{{ cd.price | number:0 : ',,' }}</span>
+															</div>
+														</div>
+													</div>
+												</td>
+												<td class="shop-qty">
+													<div class="row">
+														<div class="pro-qty-2">
+															<span class="fa fa-angle-left dec qtybtn" ng-click="updateminusqty(cd)"></span>
+															<input type="number" name="quantity" id="qty" value="{{cd.quantity}}">
+															<span class="fa fa-angle-right inc qtybtn" ng-click="updateplusqty(cd)"></span>
+														</div>
+													</div>
+												</td>
+												<td><span class="product-price">{{cd.price *
+													cd.quantity | number:0 : 'symbol'}}</span></td>
+												<td><i class="fa fa-close" ng-click="showConfirm(cd)"></i>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div id="notification">Đặt hàng thành công</div>
+									<!-- <ul class="list-inline p-0 m-0">
+										<li class="checkout-product">
+											<div class="row align-items-center">
+												<div class="col-sm-1" style="margin-left: 10px;">
+													<input class="form-check-input" type="checkbox" onchange="batdk()"
+														name="cdid" value="{{cd.id}}" ng-model="selected"
+														ng-checked="exist(cd)" ng-click="toggleSelection(cd)" />
+												</div>
+												<div class="col-sm-2">
+													<span class="checkout-product-img"> <a href=""><img
+																class="img-fluid rounded"
+																th:src="@{|/images/book/{{cd.book.image}}|}" alt=""></a>
+													</span>
+												</div>
+												<div class="col-sm-2">
+													<div class="checkout-product-details">
+														<h5>{{cd.book.name}}</h5>
+														<div class="price">
+															<i>{{cd.price | number:0}} VNĐ</i>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="row">
+														<div class="col-sm-10">
+															<div class="row align-items-center mt-2">
+																<div class="col-sm-7 col-md-6">
+																	<button ng-click="updateminusqty(cd)"
+																		class="fa fa-minus qty-btn"
+																		id="btn-minus"></button>
+																	<input readonly type="number"
+																		ng-change="updateqty(cd)" ng-model="cd.quantity"
+																		id="quantity" value="{{cd.quantity}}">
+																	<button ng-click="updateplusqty(cd)"
+																		class="fa fa-plus qty-btn"
+																		id="btn-plus"></button>
+																</div>
+																<div class="col-sm-5 col-md-6">
+																	<span class="product-price">{{cd.price *
+																		cd.quantity | number:0}}</span> VNĐ
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-2">
+															<a href="" class="text-dark font-size-20"><i
+																	ng-click="deleteid(cd.id)"
+																	class="ri-delete-bin-7-fill"></i></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="address" class="p-0 col-12">
+					<div class="row align-item-center">
+						<div class="col-lg-8">
+							<div class="iq-card">
+								<div class="iq-card-header d-flex justify-content-between">
+									<div class="iq-header-title">
+										<h4 class="card-title">Nhập thông tin giao hàng</h4>
+									</div>
+								</div>
+								<div class="iq-card-body">
+									<form onsubmit="required()">
+										<div class="row mt-3">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Họ và tên: *</label>
+													<input type="text" class="form-control" name="user" id="user"
+														value="{{user.fullname}}" readonly
+														style="background-color: white;">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Số điện thoại: *</label> <input type="text"
+														class="form-control" name="phone" id="phone" value="{{user.phone}}">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label" for="province">Tỉnh/Thành
+														phố</label> <select class="form-select form-control"
+														id="province"></select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label" for="district">Quận/Huyện</label>
+													<select class="form-select form-control" id="district">
+														<option value="">Chọn Quận/Huyện</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label" for="ward">Phường/Xã</label> <select
+														class="form-select form-control" id="ward">
+														<option value="">Chọn Phường/Xã</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-outline mb-4">
+													<label class="form-label" for="">Địa chỉ</label>
+													<input type="text" id="result" class="form-control" placeholder="Địa chỉ nhận hàng..."/>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-outline mb-4">
+													<label class="form-label" for="">Ghi chú</label>
+													<input type="text" id="note" class="form-control" placeholder="Ghi chú giao hàng cho Shipper..."/>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="iq-card">
+								<div class="iq-card-body">
+									<span>Mã giảm giá: </span>
+									<form class="mt-3">
+										<div class="d-flex align-items-center">
+											<select class="form-select form-control" id="voucher">
+												<option value="0">Chọn mã giảm giá</option>
+												<option ng-repeat="v in myvoucher" value="{{v.voucher.voucherid}}">
+													<b>{{v.voucher.voucherid}}
+														&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+														{{v.voucher.discount |number:0}} VNĐ</b>
+												</option>
+											</select>
+										</div>
+									</form>
+									<hr>
+									<p>
+										<b>Chi tiết</b>
+									</p>
+									<div class="d-flex justify-content-between mb-1">
+										<span>Tổng</span> <span>{{ttcs | number:0}} VNĐ</span>
+									</div>
+									<div class="d-flex justify-content-between mb-1">
+										<span>Giảm giá</span> 
+										<div id="giamgia" class="text-success">0 VNĐ</div>
+									</div>
+									<div class="d-flex justify-content-between">
+										<span>Phí vận chuyển</span>
+										<div id="ship">{{0 | number:0}} VNĐ</div>
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+										<span class="text-dark"><strong>Tổng</strong></span>
+										<div id="total">{{total | number:0}} VNĐ</div>
+									</div>
+									<div class="iq-card-header d-flex justify-content-between">
+										<div class="iq-header-title">
+											<h6 class="card-title">Lựa chọn thanh toán</h6>
+										</div>
+									</div>
+									<div class="iq-card-body">
+										<div class="card-lists">
+											<div class="form-group">
+												<div class="custom-control custom-radio">
+													<input type="radio" id="netbaking" name="payment" value="0"
+														class="custom-control-input"> <label
+														class="custom-control-label" for="netbaking">
+														Thanh toán VNPay</label>
+												</div>
+												<div class="custom-control custom-radio">
+													<input type="radio" id="cod" name="payment" value="1"
+														class="custom-control-input"> <label
+														class="custom-control-label" for="cod"> Thanh toán
+														khi nhận hàng </label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr>
+									<button class="btn btn-danger" ng-click="cbthanhtoan()" id="place-order"
+										style="width: 100%; background-color: orange; color: aliceblue;" disabled>Thanh
+										Toán</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+		integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+		integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--	<script th:src="@{/js/API.js}"></script>-->
+	<script>
+		function batdk() {
+			var checkboxes = document.getElementsByName("cdid");
+			var count = 0;
+			for (var i = 0; i < checkboxes.length; i++) {
+				if (checkboxes[i].checked) {
+					count++;
+				}
+			}
+			if (count < 1) {
+				document.getElementById("place-order").disabled = true;
+			} else {
+				document.getElementById("place-order").disabled = false;
+			}
+		}
+	</script>
+</body>
+
+</html>

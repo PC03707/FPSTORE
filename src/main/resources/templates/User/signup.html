@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<title>Đăng Ký</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- MATERIAL DESIGN ICONIC FONT -->
+<link rel="stylesheet"
+	href="../../signup/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+<link rel="stylesheet" href="../../fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<!-- STYLE CSS -->
+<link rel="stylesheet" href="../../signup/css/style.css">
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="row"
+			style="margin-left: 300px; margin-right: 300px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);border-radius: 5px; padding: 10px">
+			<div class="col-lg-6">
+				<form th:action="@{/create}" method="post" th:object="${account}">
+					<h3 style="font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN</h3>
+					<h3 style="color: red;">[[${message}]]</h3>
+					<div class="form-group">
+						<div class="form-wrapper">
+							<label for="">Họ và tên: (*)</label> <input th:field="*{fullname}"
+								name="fullname" type="text" class="form-control">
+						</div>
+						<div class="form-wrapper">
+							<label for="">Tên đăng nhập: (*)</label> <input th:field="*{username}"
+								name="username" type="text" class="form-control">
+						</div>
+					</div>
+					<div class="form-wrapper">
+						<label for="">Email: (*)</label> <input th:field="*{email}"
+							name="email" type="text" class="form-control">
+					</div>
+					<div class="form-wrapper">
+						<label for="">Số điện thoại: (*)</label> <input th:field="*{phone}"
+							name="phone" type="text" class="form-control">
+					</div>
+					<div class="form-wrapper">
+						<label for="">Địa chỉ: (*)</label> <input th:field="*{address}"
+							name="address" type="text" class="form-control">
+					</div>
+					<div class="form-wrapper">
+						<label for="">Mật khẩu: (*)</label> <input th:field="*{password}"
+							name="password" type="password" class="form-control">
+					</div>
+					<div class="form-wrapper">
+						<label for="">Nhập lại mật khẩu: (*)</label> <input name="confirm"
+							type="password" class="form-control">
+					</div>
+					<div class="checkbox">
+						<label> <input type="checkbox"> Tôi chấp nhận Điều
+							khoản sử dụng và Chính sách quyền riêng tư. <span
+							class="checkmark"></span>
+						</label>
+					</div>
+					<button>ĐĂNG KÝ NGAY</button>
+				</form>
+			</div>
+			<div class="col-lg-6">
+				<h4 style="text-align: center;">Chào mừng bạn đến với FPStore, đăng ký tài khoản ngay để nhận được toàn bộ trải nghiệm
+					tuyệt vời</h4>
+				<img src="../../images/logologin.png" width="540px"><br>
+				<div class="d-flex mb-5 align-items-center">
+
+							<span class="ml-auto"><a th:href="@{/security/login/form}"
+								class="forgot-pass">Quay lại đăng nhập</a></span>
+						</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

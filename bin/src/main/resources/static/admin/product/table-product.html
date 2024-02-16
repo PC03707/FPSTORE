@@ -1,0 +1,99 @@
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="iq-card">
+			<div class="iq-card-header d-flex justify-content-between">
+				<div class="iq-header-title">
+					<h4 class="card-title">Danh sách sách</h4>
+				</div>
+			</div>
+			<div class="iq-card-body">
+				<div class="table-responsive">
+					<table class="data-tables table table-striped table-bordered"
+						style="width: 100%">
+						<thead>
+							<tr>
+								<th style="width: 3%;">Mã sách</th>
+								<th style="width: 12%;">Hình ảnh</th>
+								<th style="width: 15%;">Tên sách</th>
+								<th style="width: 15%;">Thể loại sách</th>
+								<th style="width: 15%;">Tác giả sách</th>
+								<th style="width: 18%;">Mô tả sách</th>
+								<th style="width: 7%;">Giá</th>
+								<th style="width: 7%;">Thêm ảnh phụ</th>
+								<th style="width: 7%;">Thêm ảnh đọc thử</th>
+								<th style="width: 15%;">Hoạt động</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in pager.items">
+								<td>{{item.id}}</td>
+								<td><img src="../../../images/book/{{item.image}}"
+									width="70px"></td>
+								<td>{{item.name}}</td>
+								<td>{{item.category.name}}</td>
+								<td>{{item.author.name}}</td>
+								<td>
+									<p class="mb-0">{{item.discriptions}}</p>
+								</td>
+								<td>{{item.price | number : 0}}</td>
+								<td><a ng-click="editanh(item.id)"><i
+										class="fas fa-images"></i></a></td>
+								<td><a ng-click="editproofreads(item.id)"><i
+										class="fas fa-image"></i></a></td>
+								<td>
+									<div class="flex align-items-center list-user-action">
+										<a class="bg-primary" data-toggle="tooltip"
+											data-placement="top" title="" data-original-title="Edit"
+											ng-click="edit(item)"><i class="ri-pencil-line"></i></a> <a
+											class="bg-primary" data-toggle="tooltip" data-placement="top"
+											title="" data-original-title="Xoá" ng-click="delete(item)"><i
+											class="ri-delete-bin-line"></i></a>
+									</div>
+								</td>
+							</tr>
+
+
+						</tbody>
+
+					</table>
+					<div class="cart-footer text-center">
+						<button ng-click="pager.first()" class="btn btn-primary">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-arrow-left-circle"
+								viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+									d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+								  </svg>
+						</button>
+						<button ng-click="pager.prev()" class="btn btn-primary">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+									d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
+								  </svg>
+						</button>
+						<button class="btn btn-primary">{{pager.page +1}} of
+							{{pager.count}}</button>
+						<button ng-click="pager.next()" class="btn btn-primary">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+									d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
+								  </svg>
+						</button>
+						<button ng-click="pager.last()" class="btn btn-primary">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-arrow-right-circle"
+								viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+									d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+								  </svg>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

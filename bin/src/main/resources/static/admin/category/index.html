@@ -1,0 +1,70 @@
+<!-- Page Content  -->
+         <div id="content-page" class="">
+            <div class="container-fluid">
+               <div class="row">
+                <!-- Page Content  -->
+                  <div class="col-sm-12">
+                     <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                           <div class="iq-header-title">
+                              <h4 class="card-title">Thêm danh mục</h4>
+                           </div>
+                        </div>
+                        <div class="iq-card-body">
+                           <form >
+                              <div class="form-group">
+                                 <label>Mã danh mục:</label>
+                                 <input type="text" class="form-control" ng-model="form.id">
+                              </div>
+                              <div class="form-group">
+                                 <label>Tên danh mục:</label>
+                                 <input type="text" class="form-control" ng-model="form.name">
+                              </div>
+                              <button ng-click="create()"  class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm</button>
+                              <button ng-click="update()"  class="btn btn-success"><i class="bi bi-pencil-square"></i> Sửa</button>
+                              <button ng-click="delete()"  class="btn btn-danger"><i class="bi bi-x-circle"></i> Xóa</button>
+                              <button ng-click="reset()"  class="btn btn-info"><i class="bi bi-arrow-clockwise"></i> Làm mới</button>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+              
+        
+                  <div class="col-sm-12">
+                     <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                           <div class="iq-header-title">
+                              <h4 class="card-title">Danh sách danh mục</h4>
+                           </div>
+                       
+                        </div>
+                        <div class="iq-card-body">
+                           <div class="table-responsive">
+                              <table class="data-tables table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th width="20%">Mã danh mục</th>
+                                        <th width="40%">Têm danh mục</th>
+                                        <th width="10%">Hoạt động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in items"> 
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>
+                                           <div class="flex align-items-center list-user-action">
+                                             <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" ng-click="edit(item)"><i class="ri-pencil-line"></i></a>
+                                             <a class="bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" ng-click="delete(item)"><i class="ri-delete-bin-line"></i></a>
+                                          </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>

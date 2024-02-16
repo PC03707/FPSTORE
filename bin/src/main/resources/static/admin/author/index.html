@@ -1,0 +1,76 @@
+
+         <!-- Page Content  -->
+         <div id="content-page" class="">
+            <div class="container-fluid">
+               <div class="row">
+               <div class="col-sm-12">
+                     <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                           <div class="iq-header-title">
+                              <h4 class="card-title">Thêm tác giả</h4>
+                           </div>
+                        </div>
+                        <div class="iq-card-body">
+                           <form>
+                           <div class="form-group">
+                                 <label>ID:</label>
+                                 <input type="text" class="form-control" ng-model="form.id">
+                              </div>
+                              <div class="form-group">
+                                 <label>Tên tác giả:</label>
+                                 <input type="text" class="form-control" ng-model="form.name">
+                              </div>
+                        
+                              <button ng-click="create()" type="submit" class="btn btn-primary"><i class="bi bi-plus"></i>Thêm</button>
+                              <button ng-click="update()" type="submit" class="btn btn-primary"><i class="bi bi-pencil"></i> Sửa</button>
+                              <button ng-click="delete()" type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Xóa</button>
+                              <button ng-click="reset()" type="reset" class="btn btn-info"><i class="bi bi-arrow-clockwise"></i> Làm mới</button>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-12">
+                     <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                           <div class="iq-header-title">
+                              <h4 class="card-title">Danh sách tác giả</h4>
+                           </div>
+                           <div class="iq-card-header-toolbar d-flex align-items-center">
+                              <a ng-click="edit(item)" class="btn btn-primary">Thêm tác giả</a>
+                           </div>
+                        </div>
+                        <div class="iq-card-body">
+                           <div class="table-responsive">
+                              <table class="data-tables table table-striped table-bordered" style="width:100%">
+                                 <thead>
+                                    <tr>
+                                       <th style="width: 5%;">STT</th>
+                                 
+                                       <th style="width: 35%;">Tên tác giả</th>
+                                       <th style="width: 10%;">Hoạt động</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr ng-repeat="item in items">
+                                       <td>{{item.id}}</td>
+                                      
+                                       <td>{{item.name}}</td>
+                                       
+                                       <td>
+                                          <div class="flex align-items-center list-user-action">
+                                             <a class="bg-primary"   ng-click="edit(item)"><i class="ri-pencil-line"></i></a>
+                                             <a class="bg-danger"   ng-click="delete(item)"><i class="ri-delete-bin-line"></i></a>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      

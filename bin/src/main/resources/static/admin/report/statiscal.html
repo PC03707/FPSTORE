@@ -1,0 +1,60 @@
+
+
+<!-- Page Content  -->
+<div id="content-page" class="">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="iq-card">
+					<div class="iq-card-header d-flex justify-content-between">
+						<div class="iq-header-title">
+							<h4 class="card-title">Thống kê đơn hàng </h4>
+						</div>
+						<div class="iq-card-header-toolbar d-flex align-items-center">
+							<div class="search-container search-container-right">
+								<input type="date" class="form-control" ng-model="endDate">
+							</div>
+							<div class="search-container search-container-right">To
+								date</div>
+							<div class="search-container search-container-right">
+								<input type="date" class="form-control" ng-model="startDate">
+							</div>
+
+							<div class="search-container search-container-right">
+								<button class="btn btn-primary" ng-click="loadProducts()"
+									style="margin-left: 10px">
+									<i class="fas fa-search"></i>Show
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="iq-card-body">
+						<div class="table-responsive">
+							<table class="data-tables table table-striped table-bordered"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th style="width: 25%;">Ngày đặt hàng</th>
+										<th style="width: 25%;">Họ và tên</th>
+										<th style="width: 25%;">Số lượng đơn hàng</th>
+										<th style="width: 25%;">Tổng </th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in pager.items">
+										<td>{{ item.createDate }}</td>
+										<td>{{ item.fullName }}</td>
+										<td>{{ item.orderCount }}</td>
+										<td>{{ item.totalAmount |number:0 }}</td>								
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

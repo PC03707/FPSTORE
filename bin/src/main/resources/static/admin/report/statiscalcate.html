@@ -1,0 +1,44 @@
+
+
+<!-- Page Content  -->
+<div id="content-page" class="">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="iq-card">
+					<div class="iq-card-header d-flex justify-content-between">
+						<div class="iq-header-title">
+							<h4 class="card-title">Loại sản phẩm</h4>
+						</div>
+						
+					</div>
+					<div class="iq-card-body">
+						<div class="table-responsive">
+							<table class="data-tables table table-striped table-bordered"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th style="width: 25%;">Tên loại</th>
+										<th style="width: 25%;">Số lượng đơn hàng</th>
+										<th style="width: 25%;">Tổng số lượng loại sản phẩm</th>
+										<th style="width: 25%;">Tổng tiền </th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in items">
+										<td>{{ item.name }}</td>
+                                        <td>{{ item.numberOfOrders }}</td>
+                                        <td>{{ item.totalQuantity }}</td>
+                                        <td>{{ item.avgPrice | number:0}}</td>			
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

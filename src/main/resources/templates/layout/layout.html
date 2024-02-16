@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:fragment="dynamic(title,view)">
+<head>
+<meta charset="UTF-8">
+<title th:replace="${title}"></title>
+</head>
+<div th:replace="~{/layout/boostrap.html}"></div>
+
+<body ng-app="app" ng-controller="ctrl">
+	<nav th:replace="~{/layout/nav}"></nav>
+	<main th:replace="${view}"></main>
+	<footer th:replace="~{/layout/footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+
+<head>
+	<title>Payment Result</title>
+</head>
+
+<body>
+	<div id="content-page" class="content-page">
+		<div class="container-fluid checkout-content">
+			<div class="card">
+				<div class="card-header text-center">
+					Giao dịch thành công
+				</div>
+				<div class="card-body">
+					<h1>Payment Result</h1>
+					<p>Trạng thái: [[${message}]]</p>
+
+					<a href="/oder">Quay lại trang chính</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--	<script>-->
+		
+<!--	</script>-->
+</body>
+
+</html>

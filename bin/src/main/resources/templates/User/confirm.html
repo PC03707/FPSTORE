@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>RegistrationForm_v2 by Colorlib</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="../../signup/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+		
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="../../signup/css/style.css">
+	</head>
+
+	<body>
+
+		<div class="wrapper" style="background-image: url('images/bg-registration-form-2.jpg');">
+			<div class="inner">
+				<form th:action="@{/confirm}" method="post">
+					<h3>Vui Lòng Nhập Mã Xác Nhận</h3>
+					
+					<div class="form-wrapper">
+						<label for="">Mã xác nhận</label>
+						<input type="text" name="confirm" class="form-control">
+						<h4>[[${error}]]</h4>
+					</div>
+					<button>Xác nhận</button>
+				</form>
+			</div>
+		</div>
+		
+	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

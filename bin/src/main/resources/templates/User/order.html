@@ -1,0 +1,106 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+<head>
+<meta charset="utf-8">
+<title>ODER</title>
+
+</head>
+<body ng-controller="order">
+	<div id="content-page" class="content-page">
+		<div class="container-fluid checkout-content" style="width: 80%;">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="iq-card">
+						<div class="iq-card-header d-flex justify-content-between">
+							<div class="iq-header-title" >
+							</div>
+						</div>
+						<div class="iq-card-body">
+							<div class="table-responsive">
+								<table class="data-tables table table-default"
+									style="width: 100%">
+									<thead>
+										<tr>
+											<th>Mã Đơn Hàng</th>
+											<th>Ngày mua</th>
+											<th>Tổng tiền</th>
+											<th >Phí vận chuyển</th>
+											<th>Địa chỉ</th>
+											<th>Trạng thái</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="o in myOrder">
+											<td>{{o.ordercode}}</td>
+											<td>{{o.createDate | date:'dd/MM/yyyy'}}</td>
+											<td>{{o.billtotal - o.ship | number:0}}</td>
+											<td>{{o.ship | number:0}}</td>
+											<td>
+												<p class="mb-0">{{o.address}}</p>
+											</td>
+											<td>{{o.status}}
+												<button ng-if="o.status.id === 1"
+													ng-click="changeStatus(o.id, 4)"
+													class="btn btn-danger bg-danger">Cancel</button>
+<!-- 												<button ng-if="o.status.id === 3" -->
+<!-- 													ng-click="changeStatus(o.id, 3)" -->
+<!-- 													class="btn btn-success bg-success">Đánh giá</button> -->
+											</td>
+											<td><a href="/bill-details/{{o.ordercode}}"
+												>Xem ngay</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- <div class="modal fade" id="orderDetailModal" tabindex="-1"
+							role="dialog" aria-labelledby="orderDetailModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="orderDetailModalLabel">Order
+											Detail</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<table class="data-tables table table-striped table-bordered"
+											style="width: 100%">
+											<thead>
+												<tr>
+													<th style="width: 20%">Image</th>
+													<th style="width: 40%">Product</th>
+													<th style="width: 20%">Price</th>
+													<th style="width: 20%">Quantity</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="orderDetail in selectedOrderDetails">
+													<td><img src="/images/book/{{orderDetail.book.image}}"
+														alt="" style="width: 100px"></td>
+													<td>{{ orderDetail.book.name }}</td>
+													<td>{{ orderDetail.price |number :0}}</td>
+													<td>{{ orderDetail.quantity }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-secondary" ng-click="closeModal()">Close</button>
+									</div>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

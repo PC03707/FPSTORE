@@ -1,0 +1,222 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+
+<head>
+	<meta charset="utf-8">
+	<title>Chi tiết truyện tranh</title>
+
+<body>
+	<div id="content-page" class="content-page">
+		<div class="null" style="height: 50px;"></div>
+		<div class="container-fluid checkout-content" style="width: 80%;">
+			<div class="container">
+				<div class="row">
+					<div class="card col-12">
+						<div class="card-header border-0"
+							style="font-size: 14px;
+                        color: #141414; font-weight: 600;
+                        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+							ĐÁNH GIÁ SẢN PHẨM
+						</div>
+						<div class="card-body">
+							<div>
+								<div class="container-fluid">
+									<div class="row iq-card" style=" height: 500px">
+										<div class="col-lg-12 mx-auto">
+											<div class="row mt-5">
+												<div class="col-lg-3">
+													<ul id="description-slider"
+														class="list-inline p-0 m-0  d-flex align-items-center">
+														<li><a href=""> <img th:src="@{|/images/book/${item.image}|}"
+																	class="img-fluid w-100 rounded" alt="">
+															</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-3 mt-5" style="font-size: 15px;
+												color: #141414; font-weight: 600;
+												font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+													<h5>[[${item.name}]]</h5>
+													<h5 class="mt-2">
+														[[${#numbers.formatDecimal(item.price, 0, 'POINT', 0,
+														'POINT')}]]&#x20AB;</h5>
+													<div class="text-primary mb-2 mt-2">
+														Tác giả: <span class="text-body">HappyLive</span>
+													</div>
+													<h6 class="mt-2">Lượt mua: 12.5k</h6>
+													<h6 class="mt-2">4.2k đánh giá</h6>
+													<div class="iq-social d-flex align-items-center">
+														<h5 class="mr-2 mt-2">Chia sẻ:</h5>
+														<ul class="list-inline d-flex p-0 mb-0 align-items-center mt-2">
+															<li ng-click="shareOnFacebook()"><a
+																	class="avatar-40 rounded-circle bg-primary mr-2 facebook"><i
+																		class="fab fa-facebook logo-facebook"></i></a></li>
+															<li><a href="#" class="avatar-40 rounded-circle bg-primary mr-2 gmail"><i
+																		class="fas fa-envelope"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<i class="mb-1">Viết đánh giá:</i>
+													<div class="row">
+														<div class="col-lg-3" style="width: 50px">
+															<th:block th:if="${#request.remoteUser}">
+																<b class="line-height"><a href="#"
+																		class="search-toggle iq-waves-effect d-flex align-items-center">
+																		<img src="../images/user/{{user.photo}}"
+																			class="avatar img-fluid rounded-circle mr-3" alt="user">
+																		<div class="caption">
+																			<h6 class="mb-1 line-height" id="username">
+																				[[${#request.remoteUser}]]</h6>
+																		</div>
+																	</a> </b>
+															</th:block>
+														</div>
+														<div class="col-lg-12">
+															<div class="stars">
+																<input class="star star-5" id="star-5" type="radio" name="star"
+																	value="5" checked/> <label class="star star-5" for="star-5"></label>
+																<input class="star star-4" id="star-4" type="radio" name="star"
+																	value="4" /> <label class="star star-4" for="star-4"></label>
+																<input class="star star-3" id="star-3" type="radio" name="star"
+																	value="3" /> <label class="star star-3" for="star-3"></label>
+																<input class="star star-2" id="star-2" type="radio" name="star"
+																	value="2" /> <label class="star star-2" for="star-2"></label>
+																<input class="star star-1" id="star-1" type="radio" name="star"
+																		value="1"/> <label class="star star-1" for="star-1"></label>
+															</div>
+															<div class="text">
+																<textarea rows="2" cols="70" class="form-control"
+																	placeholder="Chia sẻ trải nghiệm và chất lượng của bạn ở đây..."
+																	id="comment"></textarea>
+																	<input id="bookid" style="display: none;" th:value="${item.id}">
+																<button type="submit" class="btn btn-primary mt-2" ng-click="Postevaluate('[[${item.id}]]')">Gửi
+																	Đánh Giá</button>
+															</div>
+															<div id="notification">Đặt hàng thành công</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="card col-12">
+						<div class="card-header border-0"
+							style="font-size: 14px;
+                        color: #141414; font-weight: 600;
+                        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+							ĐÁNH GIÁ TỪ NGƯỜI DÙNG
+						</div>
+						<div class="card-body">
+							<div ng-repeat="evaluate in evaluates">
+							<div class="row mt-2" >
+								<th:block th:if="${#request.remoteUser}">
+									<b class="line-height"><a href="#"
+										class="search-toggle iq-waves-effect d-flex align-items-center">
+									<img src="../images/user/{{evaluate.account.photo}}"
+										class="avatar img-fluid rounded-circle mr-3" alt="user" style="width: 52px;
+											height: 52px;overflow: hidden;border-radius: 50%;border: 2px solid #fff;">
+									<div class="caption">
+									<h6 class="mb-1 line-height" id="username">{{evaluate.account.fullname}}</h6>
+										</div>
+									</a> </b>
+								</th:block>
+							</div>
+							<div class="row">
+                                <div class="col-sm-12 col-md-4">
+									<div ng-if="evaluate.star == 1">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+									</div>
+									<div ng-if="evaluate.star == 2">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+									</div>
+									<div ng-if="evaluate.star == 3">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+									</div>
+									<div ng-if="evaluate.star == 4">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_white.jpg" alt="" style="width: 30px;">
+									</div>
+									<div ng-if="evaluate.star == 5">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+										<img src="../images/star_yellow.jpg" alt="" style="width: 30px;">
+									</div>
+									
+							</div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="value text-bold"><span
+                                            class="block-center block-left block-wrap"><span class="" th:with="ship=*{ship}"
+                                                style="font-size: 14px;
+                                            color: #141414; font-weight: 600;
+                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{evaluate.comment}}</span></span>
+                                    </div>
+                                </div>
+								<div class="col-sm-12 col-md-4">
+                                    <div class="value text-bold"><span
+                                            class="block-center block-left block-wrap"><span class="" th:with="ship=*{ship}"
+                                                style="font-size: 14px;
+                                            color: #141414; font-weight: 600;
+                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{evaluate.commentDate | date:'dd/MM/yyyy'}}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+
+		// Khởi tạo SDK của Facebook với App ID
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: '1371835063403809',
+				autoLogAppEvents: true,
+				xfbml: true,
+				version: 'v13.0'
+			});
+
+			// Xử lý sự kiện khi nút chia sẻ được nhấn
+			document.getElementById('shareBtn').addEventListener('click',
+				function () {
+					FB.ui({
+						method: 'share',
+						href: '',
+					}, function (response) {
+						// Xử lý kết quả chia sẻ
+						console.log('Share response:', response);
+					});
+				});
+		};
+		
+	</script>
+	<script src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+
+</html>

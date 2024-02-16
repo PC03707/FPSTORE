@@ -1,0 +1,222 @@
+<div id="content-page" class=""
+	xmlns:th="http://www.thymeleaf.org">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 col-lg-3">
+				<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+					<div class="iq-card-body">
+						<div class="d-flex align-items-center">
+							<div class="rounded-circle iq-card-icon bg-primary">
+								<i class="ri-user-line"></i>
+							</div>
+							<div class="text-left ml-3">
+								<h2 class="mb-0">
+									<span class="counter">{{slkh}}</span>
+								</h2>
+								<h5 class="">Người dùng</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-3">
+				<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+					<div class="iq-card-body">
+						<div class="d-flex align-items-center">
+							<div class="rounded-circle iq-card-icon bg-danger">
+								<i class="ri-book-line"></i>
+							</div>
+							<div class="text-left ml-3">
+								<h2 class="mb-0">
+									<span class="counter">{{slsp}}</span>
+								</h2>
+								<h5 class="">Sách</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-3">
+				<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+					<div class="iq-card-body">
+						<div class="d-flex align-items-center">
+							<div class="rounded-circle iq-card-icon bg-warning">
+								<i class="ri-shopping-cart-2-line"></i>
+							</div>
+							<div class="text-left ml-3">
+								<h2 class="mb-0">
+									<span class="counter">{{sldh}}</span>
+								</h2>
+								<h5 class="">Đơn Hàng</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-3">
+				<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+					<div class="iq-card-body">
+						<div class="d-flex align-items-center">
+							<div class="rounded-circle iq-card-icon bg-info">
+								<i class="ri-radar-line"></i>
+							</div>
+							<div class="text-left ml-3">
+								<h2 class="mb-0">
+									<span class="counter">{{slcd}}</span>
+								</h2>
+								<h5 class="">Chờ Duyệt</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+					<div
+						class="iq-card-header d-flex justify-content-between align-items-center">
+						<div class="iq-header-title">
+							<h4 class="card-title mb-0">Tóm lược</h4>
+						</div>
+					</div>
+					<div class="iq-card-body">
+						<ul class="list-inline p-0 mb-0">
+							<li>
+								<div class="iq-details mb-2">
+									<span class="title">Thu nhập hôm nay</span>
+									<div class="percentage float-right text-primary">
+										{{tongtienhomnay | number :0}} <span></span>
+									</div>
+									<div class="iq-progress-bar-linear d-inline-block w-100">
+										<div class="iq-progress-bar iq-bg-primary">
+											<span class="bg-primary" data-percent="90"></span>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								
+							</li>
+
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+					<div
+						class="iq-card-header d-flex justify-content-between align-items-center">
+						<div class="iq-header-title">
+							<h4 class="card-title mb-0">Tổng tiền </h4>
+						</div>
+					</div>
+					<div class="iq-card-body">
+						<ul class="list-inline p-0 mb-0">
+							<li>
+								<div class="iq-details mb-2">
+									<span class="title">Tổng thu nhập</span>
+									<div class="percentage float-right text-primary">
+										{{tongthunhap | number :0}} <span></span>
+									</div>
+									<div class="iq-progress-bar-linear d-inline-block w-100">
+										<div class="iq-progress-bar iq-bg-primary">
+											<span class="bg-primary" data-percent="90"></span>
+										</div>
+									</div>
+								</div>
+							</li>						
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+					<div class="iq-card-header d-flex justify-content-between">
+						<div class="iq-header-title">
+							<h4 class="card-title">Đơn hàng hôm nay</h4>
+						</div>
+						
+					</div>
+					<div class="iq-card-body">
+						<div class="table-responsive">
+							<table class="table mb-0 table-borderless border">
+								<thead>
+									<tr>
+										<th scope="col">Mã hóa đơn</th>
+										<th scope="col">Khách hàng</th>
+										<th scope="col">Ngày</th>
+										<th scope="col">Số tiền</th>
+										<th scope="col">Tình trạng</th>
+										<th scope="col">Chi tiết</th>
+										<th scope="col">Thao tác</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in ddhanghna">
+										<td>{{item.id}}</td>
+										<td>{{item.account.username}}</td>
+										<td>{{item.createDate}}</td>
+										<td>{{item.billtotal | number :0}}</td>
+										<td><div class="badge badge-pill badge-success">{{item.status}}</div></td>
+										<td><a href="javascript:void(0)"
+											ng-click="showOrderDetail(item.id)">Xem chi tiết</a></td>
+										<td><a href="#!order"> Xác nhận</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!-- 				Chi tiết đơn hàng-->
+			<div class="modal fade" id="orderDetailModal" tabindex="-1"
+				role="dialog" aria-labelledby="orderDetailModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="orderDetailModalLabel">Detail</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<table class="data-tables table table-striped table-bordered"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th style="width: 20%">Image</th>
+										<th style="width: 40%">Product</th>
+										<th style="width: 20%">Price</th>
+										<th style="width: 20%">Quantity</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="orderDetail in selectedOrderDetails">
+										<td><img src="/images/book/{{orderDetail.book.image}}"
+											alt="" style="width: 100px"></td>
+										<td>{{ orderDetail.book.name }}</td>
+										<td>{{ orderDetail.price |number :0}}</td>
+										<td>{{ orderDetail.quantity }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" ng-click="closeModal()">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- kết thúc chi tiết đơn hàng-->
+		</div>
+	</div>
+</div>

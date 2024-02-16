@@ -1,0 +1,328 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+
+<head>
+	<meta charset="utf-8">
+	<title>Chi tiết truyện tranh</title>
+
+<body>
+	<div class="wrapper">
+		<!-- Page Content  -->
+		<div id="content-page" class="content-page">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-1"></div>
+					<div class="col-sm-10" style="padding-bottom: 20px; padding-top: 20px">
+						<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+							<div th:object="${item}" class="iq-card-body pb-0">
+								<div class="description-contens align-items-top row">
+									<div class="col-md-4">
+										<div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
+											<div class="iq-card-body p-0">
+												<div class="row align-items-center">
+													<div class="col-3">
+														<div th:each="image:${image}" class="col-3">
+															<ul id="description-slider-nav"
+																class="list-inline p-0 m-0  d-flex align-items-center">
+																<li><a href="javascript:void(0);"> <img
+																			th:src="@{|/images/bookdec/${image.link}|}"
+																			class="" width="145px"
+																			style="padding-right: 30px;">
+																	</a></li>
+															</ul>
+														</div>
+													</div>
+													<div class="col-9">
+														<ul id="description-slider"
+															class="list-inline p-0 m-0  d-flex align-items-center">
+															<li><a href="javascript:void(0);"> <img
+																		th:src="@{|/images/book/*{image}|}"
+																		class="img-fluid w-100 rounded" alt="">
+																</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
+											<div class="iq-card-body p-0">
+												<h3 class="mb-3">[[*{name}]]</h3>
+												<div class="price d-flex align-items-center font-weight-500 mb-2">
+
+													<span class="font-size-24 text-dark">[[${#numbers.formatDecimal(item.price, 0, 'POINT', 0,
+														'POINT')}]] ₫</span>
+												</div>
+												<div class="mb-3 d-block">
+													<span class="font-size-20 text-warning"> <i
+															class="fa fa-star mr-1"></i> <i class="fa fa-star mr-1"></i>
+														<i class="fa fa-star mr-1"></i> <i class="fa fa-star mr-1"></i>
+														<i class="fa fa-star"></i>
+													</span>
+												</div>
+
+
+
+												<!-- Bắt đầu phần đọc thử -->
+												<!-- Nút bấm -->
+												<button type="button" href="javascript:void(0)" class="btn btn-primary"
+													data-toggle="modal" data-target="#exampleModal">Đọc thử</button>
+
+												<!-- Modal -->
+												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+													aria-labelledby="exampleModalLabel" aria-hidden="true">
+													<div class="modal-dialog modal-lg" role="document">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="exampleModalLabel">Đọc
+																	thử sách</h5>
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+															<div th:each="item:${proofread}" class="modal-body">
+																<img th:src="@{|/images/proofread/${item.images}|}"
+																	style="width: 767px; height: 790px;">
+
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-dismiss="modal">Đóng</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- Kết thúc phần đọc thử -->
+
+
+
+												<div class="text-primary mb-4">
+													Tác giả: <span class="text-body">HappyLive</span>
+												</div>
+												<div class="mb-4 d-flex align-items-center">
+													<a ng-click="addcart(item)"
+														class="btn btn-primary view-more mr-2">Thêm vào giỏ
+														hàng</a>
+												</div>
+												<div class="mb-3">
+													<a href="#" class="text-body text-center"> <span
+															class="avatar-30 rounded-circle bg-primary d-inline-block mr-2"><i
+																class="ri-heart-fill"></i></span><span>Thêm vào danh
+															sách
+															yêu thích</span></a>
+												</div>
+												<div class="iq-social d-flex align-items-center">
+													<h5 class="mr-2">Chia sẻ:</h5>
+													<ul class="list-inline d-flex p-0 mb-0 align-items-center">
+														<li ng-click="shareOnFacebook()"><a
+																class="avatar-40 rounded-circle bg-primary mr-2 facebook"><i
+																	class="fab fa-facebook"></i></a></li>
+														<li><a href="#"
+																class="avatar-40 rounded-circle bg-primary mr-2 gmail"><i
+																	class="fas fa-envelope"></i></a></li>
+													</ul>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<span class="text-dark mb-4 pb-4 iq-border-bottom" style="display: block;"
+											id="short-discriptions">
+											<th:block th:text="${#strings.length(item.discriptions) > 200 ? #strings.substring(item.discriptions, 0, 800) + '...' : item.discriptions}">
+											</th:block><i style="color: rgb(92, 92, 245);" id="xemthem"
+												onclick="showDes()">Xem thêm</i>
+										</span>
+										<span id="show-discriptions" style="display: none;">
+											<span
+												class="text-dark mb-4 pb-4 iq-border-bottom d-block">[[*{discriptions}]] <i style="color: rgb(92, 92, 245);" id="xemthem"
+												onclick="shortDes()">ẩn bớt</i></span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-lg-12">
+						<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+							<div
+								class="iq-card-header d-flex justify-content-between align-items-center position-relative">
+								<div class="iq-header-title">
+									<h4 class="card-title mb-0">Sản phẩm tương tự</h4>
+								</div>
+								<div class="iq-card-header-toolbar d-flex align-items-center">
+									<a href="category.html" class="btn btn-sm btn-primary view-more">Xem thêm</a>
+								</div>
+							</div>
+							<div class="iq-card-body single-similar-contens">
+								<ul id="single-similar-slider" class="list-inline p-0 mb-0 row">
+									<li class="col-md-3">
+										<div class="row align-items-center">
+											<div class="col-5">
+												<div class="position-relative image-overlap-shadow">
+													<a href="javascript:void();"><img class="img-fluid rounded w-100"
+															th:src="@{|/images/book/${item.image}|}" alt=""></a>
+													<div class="view-book">
+														<a th:href="@{|/product/detail/${item.id}|}"
+															class="btn btn-sm btn-white">Xem thêm</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-7 pl-0">
+												<h6 class="mb-2">[[${item.name}]]</h6>
+												<p class="text-body">Dịch giả : Chưa có tên</p>
+												<a href="#" class="text-dark" tabindex="-1">Đọc thử <i
+														class="ri-arrow-right-s-line"></i>
+												</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+							<div
+								class="iq-card-header d-flex justify-content-between align-items-center position-relative mb-0 trendy-detail">
+								<div class="iq-header-title">
+									<h4 class="card-title mb-0">Thịnh hành</h4>
+								</div>
+								<div class="iq-card-header-toolbar d-flex align-items-center">
+									<a href="category.html" class="btn btn-sm btn-primary view-more">Xem thêm</a>
+								</div>
+							</div>
+							<div class="iq-card-body trendy-contens">
+								<ul id="trendy-slider" class="list-inline p-0 mb-0 row">
+
+
+									<li class="col-md-3">
+										<div class="d-flex align-items-center">
+											<div class="col-5 p-0 position-relative image-overlap-shadow">
+												<a href="javascript:void();"><img class="img-fluid rounded w-100"
+														src="../../images/trendy-books/06.jpg" alt=""></a>
+												<div class="view-book">
+													<a href="book-page.html" class="btn btn-sm btn-white">Xem
+														sách</a>
+												</div>
+											</div>
+											<div class="col-7">
+												<div class="mb-2">
+													<h6 class="mb-1">Jeff Bezos Và Kỷ ..</h6>
+													<p class="font-size-13 line-height mb-1">Barb Ackue</p>
+													<div class="d-block">
+														<span class="font-size-13 text-warning"> <i
+																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star"></i>
+														</span>
+													</div>
+												</div>
+												<div class="price d-flex align-items-center">
+													<h6>
+														<b>76.800 ₫</b>
+													</h6>
+												</div>
+												<div class="iq-product-action">
+													<a href="javascript:void();"><i
+															class="ri-shopping-cart-2-fill text-primary"></i></a> <a
+														href="javascript:void();" class="ml-2"><i
+															class="ri-heart-fill text-danger"></i></a>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+							<div
+								class="iq-card-header d-flex justify-content-between align-items-center position-relative">
+								<div class="iq-header-title">
+									<h4 class="card-title mb-0">Sách yêu thích</h4>
+								</div>
+								<div class="iq-card-header-toolbar d-flex align-items-center">
+									<a href="category.html" class="btn btn-sm btn-primary view-more">Xem thêm</a>
+								</div>
+							</div>
+							<div class="iq-card-body favorites-contens">
+								<ul id="favorites-slider" class="list-inline p-0 mb-0 row">
+									<li class="col-md-4">
+										<div class="d-flex align-items-center">
+											<div class="col-5 p-0 position-relative">
+												<a href="javascript:void();"> <img src="../../images/favorite/04.jpg"
+														class="img-fluid rounded w-100" alt="">
+												</a>
+											</div>
+											<div class="col-7">
+												<h5 class="mb-2">Economix- Các Nền Kinh Tế Vận Hành</h5>
+												<p class="mb-2">Tác giả : Luka Afton</p>
+												<div
+													class="d-flex justify-content-between align-items-center text-dark font-size-13">
+													<span>Đã bán</span> <span class="mr-4">90</span>
+												</div>
+												<div class="iq-progress-bar-linear d-inline-block w-100">
+													<div class="iq-progress-bar iq-bg-success">
+														<span class="bg-success" data-percent="90"></span>
+													</div>
+												</div>
+												<a href="#" class="text-dark">Đọc ngay<i
+														class="ri-arrow-right-s-line"></i></a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Script để tích hợp chức năng chia sẻ -->
+	<script>
+		// Khởi tạo SDK của Facebook với App ID
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: '1371835063403809',
+				autoLogAppEvents: true,
+				xfbml: true,
+				version: 'v13.0'
+			});
+
+			// Xử lý sự kiện khi nút chia sẻ được nhấn
+			document.getElementById('shareBtn').addEventListener('click',
+				function () {
+					FB.ui({
+						method: 'share',
+						href: '',
+					}, function (response) {
+						// Xử lý kết quả chia sẻ
+						console.log('Share response:', response);
+					});
+				});
+		};
+		function showDes() {
+			var shortDescription = document.getElementById('short-discriptions');
+			var showDescription = document.getElementById('show-discriptions');
+
+			shortDescription.style.display = 'none';
+			showDescription.style.display = 'block';
+		}
+		function shortDes() {
+			var shortDescription = document.getElementById('short-discriptions');
+			var showDescription = document.getElementById('show-discriptions');
+
+			shortDescription.style.display = 'block';
+			showDescription.style.display = 'none';
+		}
+	</script>
+	<script src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+
+</html>

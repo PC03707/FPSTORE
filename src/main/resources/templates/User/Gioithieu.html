@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout::dynamic(~{::title},~{::body})}">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+	<link rel="stylesheet" href="../../../css/nav.css">
+<style>
+.container .left-menu .sidemenu-box ul li a {
+	font-weight: bold;
+	color: #f15c22;
+}
+
+.about .right p {
+	margin: 15px 0;
+}
+
+.container .left-menu .sidemenu-box ul li {
+	width: 100%;
+	height: 100px;
+	border: 1px solid #E9E9E9;
+	margin-bottom: 10px;
+}
+
+.container .left-menu .sidemenu-box ul {
+	list-style: none;
+	padding: 0;
+}
+
+.container .left-menu .sidemenu-box ul li {
+	width: 100%;
+	height: 30px;
+	border: 1px solid #E9E9E9;
+	margin-bottom: 10px;
+	transition: background-color 0.3s ease;
+	/* Add transition for smooth hover effect */
+}
+
+.container .left-menu .sidemenu-box ul {
+	list-style: none;
+	padding: 0;
+}
+
+.container .left-menu .sidemenu-box ul li {
+	width: 100%;
+	height: 30px;
+	border: 1px solid #E9E9E9;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	transition: background-color 0.3s ease;
+	/* Add transition for smooth hover effect */
+}
+
+.container .left-menu .sidemenu-box ul li a {
+	display: block;
+	text-decoration: none;
+	color: #333; /* Set the default text color */
+	padding: 5px;
+	color: #f15c22;
+	float: left;
+}
+
+.container .left-menu .sidemenu-box ul li:hover {
+	background-color: #f0f0f0; /* Change the background color on hover */
+}
+
+/* Style for the child menu items */
+.container .left-menu .sidemenu-box ul ul li {
+	border: none;
+	margin-bottom: 0;
+	padding-left: 20px; /* Adjust the padding for child items */
+}
+
+.container .left-menu .sidemenu-box ul ul li a {
+	padding: 5px;
+}
+
+/* Style for the "hand-o-right" icon */
+.container .left-menu .sidemenu-box ul li a i {
+	margin-right: 5px;
+}
+</style>
+
+<body>
+	<div id="bb-body" style="padding-top: 250px;">
+		<div class="help-layout">
+			<div class="container">
+				<div class="col-lg-3">
+					<div class="left-menu hide-responsive affix-top" data-spy="affix"
+						data-offset-top="217" data-offset-bottom="600">
+						<div class="sidemenu-box">
+							<ul class="nav sidebar-menu-new">
+								<li><a href="abc.html">Giới thiệu BookBuy</a></li>
+								<li><a href="/cau-hoi-thuong-gap.html">Câu hỏi thường
+										gặp</a></li>
+								<li><a href="/Help/Index/#helporder">Hướng dẫn mua hàng</a>
+								</li>
+								<li><a href="#paymenttype-child" data-toggle="collapse">Phương
+										thức thanh toán</a></li>
+								<li><a href="#shippingtype-child" data-toggle="collapse">Phương
+										thức vận chuyển</a>
+									<div id="shippingtype-child" class="children-ul collapse">
+										<ul>
+											<li><a href="/Help/Index/#shipping-inhcm"><i
+													class="fa fa-hand-o-right"></i> Tại Sài Gòn</a></li>
+											<li><a href="/Help/Index/#shipping-office"><i
+													class="fa fa-hand-o-right"></i> Gửi bưu điện đi liên tỉnh</a></li>
+											<li><a href="/Help/Index/#shipping-ems"><i
+													class="fa fa-hand-o-right"></i> Chuyển phát nhanh</a></li>
+											<li><a href="/Help/Index/#shipping-national"><i
+													class="fa fa-hand-o-right"></i> Chuyển phát quốc tế</a></li>
+										</ul>
+									</div></li>
+
+
+								<li><a href="/form-doi-tra.html">Phiếu đăng ký đổi/ trả
+										hàng</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="right-content">
+
+					<div class="col-lg-3">
+						<div class="logo">
+							<img src="logo.jpg" alt=""
+								style="height: auto; width: 100%; display: block;">
+						</div>
+					</div>
+
+
+
+					<div class="col-lg-6">
+						<div class="about">
+
+							<div class="right">
+								<h3
+									style="border-bottom: 1px solid #E9E9E9; margin: 10px 0; padding-bottom: 3px; color: #f15c22">
+									Giới thiệu FPSTORE</h3>
+								<p style="padding: 7px;">
+									FPSTORE.vn là <b>nhà sách Trực tuyến</b>, đối tác chính thức
+									của hơn 20 công ty, nhà phát hành sách hàng đầu Việt Nam: NXB
+									Trẻ, NXB Kim Đồng, Nhã Nam, Alphabooks, First News,...với số
+									lượng đầu sách đồ sộ được cập nhật liên tục hàng ngày. Ngoài <a
+										href="//bookbuy.vn/sach.html"><b>mua sách online</b></a> tại
+									FPSTORE, bạn còn có rất nhiều lựa chọn quà tặng, văn phòng
+									phẩm, đồ chơi, vật dụng gia đình, công nghệ với giá niêm yết
+									luôn bằng hoặc thấp hơn giá thị trường giúp bạn tiết kiệm rất
+									nhiều thời gian mua sắm.
+								</p>
+								<p>
+									<img src="images/Gioithieu (2).jpg" style="width: 100%;">
+								</p>
+								<p>
+									<b>Mua sắm trực tuyến</b> tại FPSTORE.vn, bạn được:
+								</p>
+								<p>
+									&gt;&gt; Giảm giá hơn 95% sách Tiếng Việt lên đến 25%. Xem thêm
+									<a href="//bookbuy.vn/cau-hoi-thuong-gap.html?id=5#promotion">Ưu
+										đãi cho Khách hàng</a>
+								</p>
+								<p>
+									&gt;&gt; <a
+										href="//bookbuy.vn/cau-hoi-thuong-gap.html?id=5#bbxupolicy">Tích
+										lũy BBxu</a> để có thể mua hàng 0 đồng!
+								</p>
+								<p>&gt;&gt; Tận hưởng các chương trình ưu đãi, khuyến mãi
+									lớn hàng tháng</p>
+								<p>&gt;&gt; Giao hàng trong vòng 48h tại TP.HCM</p>
+								<p>
+									&gt;&gt; Miễn phí vận chuyển. Tìm hiểu thêm <a href="#">Phương
+										thức Vận chuyển</a>
+								</p>
+								<p>
+									&gt;&gt; <a href="#">Đổi - trả hàng miễn phí</a> trong vòng 7
+									ngày.
+								</p>
+								<p>&gt;&gt; Thanh toán an toàn, tiện lợi: Trả tiền khi nhận
+									hàng (COD), Chuyển khoản &amp; Internet banking, Ví điện tử,
+									Chuyển tiền qua bưu điện.</p>
+								<p>&gt;&gt; Dịch vụ hậu mãi chu đáo, tận tình. Bạn cần tư
+									vấn sản phẩm, hoặc gặp khó khăn khi đặt hàng? Gọi ngay cho
+									chúng tôi 0933 109 009 để được trợ giúp.</p>
+								<p>
+									Bookbuy.vn tự hào được Sở Công thương TP.HCM và khách hàng bình
+									chọn là Top 3 <b>Nhà sách Trực tuyến</b> tiêu biểu 2013 và Top
+									2 nhóm website TMĐT tổng hợp tiêu biểu 2014
+								</p>
+								<p>
+									<b>MỘT SỐ SẢN PHẨM ĐỘC ĐÁO TẠI NHÀ SÁCH FPSTORE.VN </b>
+								</p>
+								<p></p>
+								<p></p>
+								<p>Để được hỗ trợ tốt hơn, xin vui lòng liên hệ:</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="clearfix">
+					<div class="col-lg-12">
+						<div class="about">
+							<div class="right">
+								<h3
+									style="border-bottom: 1px solid #E9E9E9; margin: 10px 0; padding-bottom: 3px; color: #f15c22">
+									Điều khoản sử dụng</h3>
+								<p style="padding: 7px;">Chào mừng bạn đến với website mua
+									hàng trực tuyến FPSTORE.vn. Khi truy cập và mua sắm tại
+									FPSTORE.vn, xem như bạn đã đồng ý tuân thủ những quy định của
+									FPSTORE.vn. Vui lòng xem kỹ quy định và kết nối thông tin cùng
+									chúng tôi để xây dựng website FPSTORE.vn ngày càng thân thiện,
+									cầu tiến và phục vụ quý khách hàng ngày một tốt hơn. Nếu có bất
+									cứ thắc mắc hay đề xuất gì, vui lòng email cho chúng tôi qua
+									địa chỉ info@FPSTORE.vn</p>
+								<h4>Tài khoản của quý khách</h4>
+								<p style="padding: 7px;">Khi sử dụng dịch vụ FPSTORE.vn, bạn
+									cần cung cấp cho chúng tôi thông tin về địa chỉ email, mật
+									khẩu, họ tên… để tạo được một tài khoản thành công. Việc sử
+									dụng và bảo mật thông tin tài khoản là trách nhiệm và quyền lợi
+									của bạn khi mua sắm tại FPSTORE.vn. Những thông tin khác trong
+									tài khoản của bạn như tên tuổi, địa chỉ.... sẽ là những thông
+									tin giúp FPSTORE.vn phục vụ bạn tốt nhất. Trong trường hợp
+									thông tin bạn cung cấp không đầy đủ hoặc sai dẫn đến việc không
+									thể giao hàng, chúng tôi có quyền ngưng hoặc từ chối phục vụ,
+									giao hàng mà không phải chịu bất kỳ trách nhiệm nào đối với
+									bạn. Khi cần thay đổi thông tin, bạn vui lòng cập nhật lại tài
+									khoản tại FPSTORE.vn. Bạn phải chịu trách nhiệm với các hoạt
+									động diễn ra thông qua việc sử dụng tài khoản và mật khẩu của
+									mình, thế nên bạn phải giữ kín chúng. Bạn nên đảm bảo đã thoát
+									khỏi tài khoản tại FPSTORE.vn sau mỗi lần sử dụng để bảo mật
+									thông tin của chính bạn.</p>
+								<p>
+									<b>Quyền lợi bảo mật thông tin của quý khách</b>
+								</p>
+								<p>Khi bạn sử dụng dịch vụ tại website FPSTORE.vn, chúng tôi
+									đảm bảo rằng, những thông tin bạn cung cấp cho chúng tôi sẽ chỉ
+									được dùng để phục vụ cho những lợi ích dành cho khách hàng của
+									FPSTORE.vn, tuyệt đối không chuyển giao cho bên thứ ba nào khác
+									vì mục đích thương mại. Chúng tôi cam kết bảo mật thông tin của
+									bạn, ngoại trừ khi cơ quan pháp luật yêu cầu cung cấp.</p>
+								<h4>Trách nhiệm của bạn khi sử dụng dịch vụ của FPSTORE</h4>
+
+								<p>Bạn cam kết không sử dụng bất kỳ công cụ, phương pháp nào
+									để can thiệp, xâm nhập bất hợp pháp vào hệ thống hay làm thay
+									đổi cấu trúc dữ liệu tại website FPSTORE.vn. Khi phát hiện ra
+									lỗi hệ thống, bạn vui lòng thông báo ngay cho quản trị web của
+									FPSTORE.vn theo số điện thoại 0981499894 hoặc email
+									info@FPSTORE.vn</p>
+								<p>Bạn không được đưa ra những nhận xét, đánh giá có ý xúc
+									phạm, quấy rối đối với người khác. Không nêu ra những nhận xét
+									mang yếu tố chính trị (tuyên truyền, chống phá, xuyên tạc chính
+									quyền), kỳ thị tôn giáo, giới tính, sắc tộc.... Tuyệt đối cấm
+									mọi hành vi mạo nhận, cố ý tạo sự nhầm lẫn mình là một khách
+									hàng khác hoặc là thành viên Ban Quản Trị FPSTORE.vn.</p>
+								<h4>Trách nhiệm và quyền lợi của FPSTORE.vn</h4>
+								<p>Chúng tôi cam kết bảo mật thông tin của khách hàng, phục
+									vụ khách hàng theo đúng những dịch vụ khách hàng được hưởng từ
+									FPSTORE.vn. Trong trường hợp có những vấn đề phát sinh ngoài
+									trách nhiệm của FPSTORE, FPSTORE.vn sẽ giúp xử lý nhưng không
+									chịu trách nhiệm về mọi tổn thất phát sinh. Chúng tôi cũng sẽ
+									không cho phép các tổ chức, cá nhân nào quảng bá sản phẩm tại
+									website FPSTORE.vn mà chưa có sự đồng ý bằng văn bản giữa hai
+									bên.</p>
+								<p>Nếu có bất kỳ sự thay đổi nào về các thỏa thuận và quy
+									định trong Điều Khoản Sử Dụng, chúng tôi sẽ thông báo trên
+									website FPSTORE.vn.</p>
+								<h3
+									style="border-bottom: 1px solid #E9E9E9; margin: 10px 0; padding-bottom: 3px; color: #f15c22">
+									Cam kết chất lượng</h3>
+								<p>
+									<a href="#" target="_blank"> <b> Tại nhà sách online
+											FPSTORE.vn</b></a> chúng tôi cam kết chất lượng sản phẩm và dịch vụ
+									đúng như những gì niêm yết trên website. Theo đó:
+								</p>
+								<div>
+									<ul style="padding: 7px;">
+										<li>Tất cả sản phẩm có xuất xứ rõ ràng &amp; không chứa
+											chất gây độc hại cho sức khỏe.</li>
+										<li>Sản phẩm luôn được bán giá bằng hoặc thấp hơn thị
+											trường.</li>
+										<li>Các sản phẩm đều được kiểm tra và thay thế nếu có bất
+											kỳ một lỗi nào trước khi giao đến tay khách hàng, ngoại trừ
+											những mặt hàng đã được nhà sản xuất đóng hộp, guarantee trước
+											đó. Trong trường hợp Quý khách phát hiện sản phẩm: bị lỗi,
+											không còn nguyên vẹn hoặc không đúng như thông tin đăng trên
+											website, vui lòng gửi yêu cầu đến 0981499894 - 0981499894
+											hoặc email info@FPSTORE.vn để được hỗ trợ sớm nhất có thể.</li>
+										<li>Chính sách <a href="#promotion"><b>ưu đãi đặc
+													biệt dành cho khách hàng thân thiết</b></a> .
+										</li>
+										<li>Mọi vấn đề phát sinh đều được giải quyết theo hướng
+											có lợi nhất cho khách hàng.</li>
+									</ul>
+								</div>
+								<h3
+									style="border-bottom: 1px solid #E9E9E9; margin: 10px 0; padding-bottom: 3px; color: #f15c22">
+									Chính sách bảo mật</h3>
+								<p>Bảo mật thông tin khách hàng là một trong những vấn đề
+									được chúng tôi ưu tiên nhằm tạo điều kiện tốt nhất cho bạn mua
+									sắm tại FPSTORE.vn. Vì thế, FPSTORE.vn cam kết việc sử dụng
+									thông tin cá nhân của khách hàng chỉ nhằm mục đích nâng cao
+									chất lượng dịch vụ, thể hiện sự quan tâm của chúng tôi dành cho
+									bạn và tạo môi trường mua hàng an toàn, tiện lợi tại
+									FPSTORE.vn. Cụ thể, thông tin của bạn chỉ dùng để:</p>
+								<div>
+									<ul style="padding: 7px;">
+										<li>Cung cấp một số tiện ích, nâng cao chất lượng hỗ trợ
+											khách hàng</li>
+										<li>Làm cơ sở giải quyết các vấn đề khiếu nại, tranh chấp
+											phát sinh liên quan đến việc sử dụng sản phẩm, dịch vụ tại
+											website Bookbuy.vn</li>
+										<li>Ngăn chặn những hoạt động vi phạm pháp luật Việt Nam.
+										</li>
+									</ul>
+								</div>
+								<p>FPSTORE.vn cam đoan sẽ không có những hành vi làm lộ
+									thông tin cá nhân của bạn vì mục đích thương mại. Tất cả thông
+									tin giao dịch giữa bạn và Bookbuy.vn sẽ được bảo mật hoàn toàn.
+									Tuy nhiên, bạn cũng không nên trao đổi những thông tin thanh
+									toán, giao nhận của mình cho một bên thứ ba nào khác để tránh
+									rò rỉ thông tin. Khi sử dụng chung máy tính với nhiều người,
+									bạn vui lòng thoát khỏi tài khoản mỗi khi không sử dụng dịch vụ
+									của FPSTORE.vn để tự bảo vệ thông tin và mật khẩu truy cập của
+									mình.</p>
+								<p>FPSTORE.vn hiểu rằng quyền lợi của bạn trong việc bảo vệ
+									thông tin cá nhân cũng chính là trách nhiệm của FPSTORE.vn, nên
+									nếu có bất kỳ thắc mắc hay góp ý nào liên quan đến chính sách
+									bảo mật của FPSTORE.vn, vui lòng liên hệ với chúng tôi qua số
+									điện thoại (028) 3820 7153 hoặc email info@FPSTORE.vn</p>
+								<h3
+									style="border-bottom: 1px solid #E9E9E9; margin: 10px 0; padding-bottom: 3px; color: #f15c22">
+									Thanh toán trực tuyến</h3>
+								<p>Mua hàng trên FPSTORE, bạn có thể thanh toán trực tuyến
+									thông qua thẻ ATM nội địa được hỗ trợ kỹ thuật bởi Onepay hoặc
+									thẻ quốc tế (Visa, Mastercard, JCB) được hỗ trợ kỹ thuật bởi
+									Moca.</p>
+								<img src="images/vnp.jpg" alt="" style="width: 60%;">
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+
+
+	<!--add to cart success dialog-->
+
+
+
+	<!--register letter success dialog-->
+
+
+	<!--post success dialog-->
+
+
+	<!--express buy dialog-->
+
+
+
+
+
+
+
+	<!--inform user when product available-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Google Code for Conversion 2015 Conversion Page -->
+
+</body>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+	crossorigin="anonymous"></script>
+
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="../../fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet" href="../../css/login.css">
+<link rel="shortcut icon" href="../../images/logo_icon.png">
+<title>Đăng Nhập</title>
+</head>
+
+<body>
+
+	<div class="container" style="padding-top: 30px;">
+		<div class="row">
+			<div class="col-lg-6 ">
+				<div class="form-block">
+					<div class="mb-4">
+						<h3 style="text-align: center; color: orange;">
+							<strong>ĐĂNG NHẬP</strong>
+						</h3>
+						<p class="mb-3" style="text-align: center;">Chào mừng bạn đến
+							với FPStore</p>
+					</div>
+					<form th:action="@{/security/login}" method="post">
+						<div class="form-group first">
+							<label for="username">Tài khoản:</label> <input type="text"
+								class="form-control" name="username" id="username">
+						</div>
+						<div class="form-group last mb-4">
+							<label for="password">Mật khẩu:</label> <input type="password"
+								class="form-control" name="password" id="password">
+						</div>
+
+						<div class="d-flex mb-5 align-items-center">
+							<label class="control control--checkbox mb-0"><span
+								class="caption">Nhớ tài khoản</span> <input type="checkbox"
+								name="remember-me" checked="checked" />
+								<div class="control__indicator"></div> </label> <span class="ml-auto"><a
+								th:href="@{/home/forgot}" class="forgot-pass">Quên mật khẩu?</a></span>
+						</div>
+						<div>
+							<span>Bạn chưa có tài khoản? <a th:href="@{/signup}"
+								class="forgot-pass">Đăng ký ngay!</a></span>
+						</div>
+						<input type="submit" value="Đăng nhập"
+							class="btn btn-pill text-white btn-block btn-warning"
+							style="margin-top: 20px;"> <span
+							class="d-block text-center my-4 text-muted">Đăng nhập bằng</span>
+						<div class="social-login text-center">
+							<a href="/oauth2/authorization/facebook" class="facebook"> <span
+								class="icon-facebook mr-3"></span>
+							</a> <a href="/oauth2/authorization/google" class="google"> <span
+								class="icon-google mr-3"></span>
+							</a>
+						</div>
+						<i class="text-danger" style="margin-left: 33%">[[${message}]]</i>
+					</form>
+				</div>
+			</div>
+			<div class="col-lg-6 ">
+				<img src="../../images/logologin.png" width="540px"><br>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../js/jquery-3.3.1.min.js"></script>
+	<script src="../../js/popper.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/main.js"></script>
+	<!-- <script>
+		document.getElementById('showPassword').addEventListener('change',
+				function() {
+					var passwordInput = document.getElementById('password');
+
+					// Nếu checkbox được chọn, hiển thị mật khẩu. Ngược lại, ẩn mật khẩu.
+					passwordInput.type = this.checked ? 'text' : 'password';
+				});
+	</script> -->
+</body>
+
+</html>

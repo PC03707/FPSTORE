@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="iq-sidebar">
+		<div class="iq-sidebar-logo d-flex justify-content-between">
+			<a href="/" class="header-logo">
+				<div class="logo-title">
+					<span class="text-primary text-uppercase"
+						style="font-family: cursive;"> FPStore</span>
+				</div>
+			</a>
+		</div>
+		<div id="sidebar-scrollbar">
+			<nav class="iq-sidebar-menu">
+				<ul id="iq-sidebar-toggle" class="iq-menu">
+					<li class="active active-menu"><a href="#dashboard"
+						class="iq-waves-effect" data-toggle="collapse"
+						aria-expanded="true"><span class="ripple rippleEffect"></span><i
+							class="las la-home iq-arrow-left"></i><span>Trang Chủ</span><i
+							class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+						<ul id="dashboard" class="iq-submenu collapse show"
+							data-parent="#iq-sidebar-toggle">
+						</ul></li>
+					<li><a href="#ui-elements" class="iq-waves-effect collapsed"
+						data-toggle="collapse" aria-expanded="false"><i
+							class="lab la-elementor iq-arrow-left"></i><span>Danh mục
+								sản phẩm</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+						<ul id="ui-elements" class="iq-submenu collapse"
+							data-parent="#iq-sidebar-toggle">
+							<li ng-repeat="c in categories" class="elements"><a
+								ng-click="productcategory(c.id)"
+								class="iq-waves-effect collapsed" data-toggle="collapse"
+								aria-expanded="false"><i class="ri-play-circle-line"></i><span>{{c.name}}</span></a></li>
+						</ul></li>
+					<li><a href="/voucher"><i class="ri-book-line"></i>Mã giảm
+							giá miễn phí</a></li>
+
+
+
+
+
+
+
+					<!-- 					<th:block th:if="${#request.remoteUser}"> -->
+
+					<!-- 						<div -->
+					<!-- 							th:if="${#request.isUserInRole('DIRE')or #request.isUserInRole('STAF')}"> -->
+					<!-- 							<a href="/admin" class="nav-item nav-link">Công cụ quản trị</a> -->
+					<!-- 						</div> -->
+					<!-- 					</th:block> -->
+
+
+
+
+					<th:block th:if="${#request.remoteUser}">
+						<li th:if="${#request.isUserInRole('ADMIN')}"><a
+							href="/admin"><i class="bi bi-gear"></i>Công cụ quản trị</a></li>
+
+
+					</th:block>
+
+
+					<li><a href="/favorite"><i class="bi bi-hearts"></i>Yêu
+							Thích</a></li>
+
+					<li><a href="/security/logoff"><i
+							class="bi bi-box-arrow-left"></i> Logout</a></li>
+
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+</body>
+</html>

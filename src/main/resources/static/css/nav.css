@@ -1,0 +1,154 @@
+		.khuyenmai1 {
+            overflow: hidden;
+            position: relative;
+        }
+
+		.khuyenmai1 img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        /* Style cho chữ "XEM NGAY" */
+        .product-hover {
+            position: absolute;
+            color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: coral;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Style khi hover vào */
+        .khuyenmai1:hover .product-hover {
+            opacity: 1;
+        }
+
+        .khuyenmai1:hover img {
+            transform: scale(1.1);
+        }
+/* -------------------------------------CHI TIẾT SỰ KIÊN */
+         a {
+          background: transparent;
+          text-decoration: none;
+         
+         
+      }
+      
+      img {
+          vertical-align: middle;
+          border: 0;
+          max-width: 100%;
+          height: auto;
+      }
+      
+      .feature-body ul {
+          list-style-type: none;
+          padding: 0;
+      }
+      
+      .feature-body li {
+          margin-bottom: 10px;
+      }
+      h1{
+          font-weight: 600px;
+          color: coral;
+      }
+      h1>a{
+          font-weight: 600px;
+          color: coral;
+      }
+    
+ @media (min-width: 1200px) {
+  .col-lg-1,
+  .col-lg-2,
+  .col-lg-3,
+  .col-lg-4,
+  .col-lg-5,
+  .col-lg-6,
+  .col-lg-7,
+  .col-lg-8,
+  .col-lg-9,
+  .col-lg-10,
+  .col-lg-11,
+  .col-lg-12 {
+    float: left;
+  }}
+  .container .left-menu .sidemenu-box ul li a {
+    font-weight: bold;
+    color: #f15c22;
+
+}
+.about .right p {
+margin: 15px 0;
+}
+
+
+.container .left-menu .sidemenu-box ul li {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #E9E9E9;
+    margin-bottom: 10px;
+
+}
+.container .left-menu .sidemenu-box ul {
+list-style: none;
+padding: 0;
+}
+
+.container .left-menu .sidemenu-box ul li {
+width: 100%;
+height: 30px;
+border: 1px solid #E9E9E9;
+margin-bottom: 10px;
+transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.container .left-menu .sidemenu-box ul {
+list-style: none;
+padding: 0;
+}
+
+.container .left-menu .sidemenu-box ul li {
+width: 100%;
+height: 30px;
+border: 1px solid #E9E9E9;
+margin-bottom: 10px;
+display: flex;
+align-items: center;
+
+transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.container .left-menu .sidemenu-box ul li a {
+display: block;
+text-decoration: none;
+color: #333; /* Set the default text color */
+padding: 5px;
+color: #f15c22;
+float: left;
+}
+
+.container .left-menu .sidemenu-box ul li:hover {background-color: #f0f0f0; /* Change the background color on hover */
+}
+
+/* Style for the child menu items */
+.container .left-menu .sidemenu-box ul ul li {
+border: none;
+margin-bottom: 0;
+padding-left: 20px; /* Adjust the padding for child items */
+}
+
+.container .left-menu .sidemenu-box ul ul li a {
+padding: 5px;
+}
+
+/* Style for the "hand-o-right" icon */
+.container .left-menu .sidemenu-box ul li a i {
+margin-right: 5px;
+}
